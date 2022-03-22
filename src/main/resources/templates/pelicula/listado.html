@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+
+        <header th:replace="layout/plantillaMenuCliente :: header"></header>
+
+        <div class="contenido">
+            <h2>Listado de Pelicula</h2>
+            <br>
+            <a th:href="@{/pelicula/modifica}">Nueva Pelicula</a>
+            <br>
+            <br>
+            <div th:if="${pelicula != null and !pelicula.empty}">
+                <table border="1">
+                    <tr>
+                        <td>Pelicula</td>
+                        <td>Genero</td> 
+                        <td>Idioma</td> 
+                        <td>Apto</td> 
+                        
+                        
+                    </tr>
+                    <tr th:each="item : ${pelicula}">
+                        <td th:text="${item.pelicula}"></td>
+                        <td th:text="${item.genero}"></td>
+                        <td th:text="${item.idioma}"></td>
+                       <td th:text="${item.apto}"></td>
+                       
+                        <td><a th:href="@{/pelicula/modificar/} + ${item.idPelicula}">Modificar</a></td>
+                        <td><a th:href="@{/pelicula/eliminar/} + ${item.idPelicula}">Eliminar</a></td>
+
+                    </tr>
+                </table>
+            </div>
+            <div th:if="${pelicula == null or pelicula.empty}">
+               No tenemos Peliculas para mostrar
+            </div>
+        </div>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>

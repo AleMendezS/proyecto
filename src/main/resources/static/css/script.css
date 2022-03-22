@@ -25,4 +25,19 @@ cedula int NOT NULL,
 pasword int NOT NULL, 
 PRIMARY KEY (id_cliente))
 ENGINE = innoDB;
+
+CREATE TABLE proyecto.ubicacion (
+id_ubi INT NOT NULL AUTO_INCREMENT,
+ubicacion VARCHAR(25) NOT NULL,
+PRIMARY KEY (id_ubi))
+ENGINE = innoDB;
+
+CREATE TABLE proyecto.pelicula (
+id_pelicula INT NOT NULL AUTO_INCREMENT,
+pelicula VARCHAR(10) NOT NULL,
+genero VARCHAR (10) NOT NULL,
+idioma VARCHAR (10) NOT NULL,
+apto INT NOT NULL, 
+PRIMARY KEY (id_pelicula))
+ENGINE = innoDB;
 */

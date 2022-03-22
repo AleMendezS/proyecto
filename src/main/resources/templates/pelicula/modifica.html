@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Nuevo empleado </title>
+        <meta charset="UTF-8">
+        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
+
+
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        <div class="contenido">
+       
+        <br>
+        <form th:action="@{/peicula/guardar}"
+              method="post"
+              th:object="${pelicula}">
+            <input type="hidden" name ="idPelicula" th:field="*{idPelicula}"/>
+            <label for="pelicula">Pelicula</label>
+            <input type="text" name="pelicula" th:field="*{pelicula}">
+            <br>
+            <label for="genero">Genero</label>
+            <input type="text" name="genero" th:field="*{genero}">
+            <br>
+            <label for="idioma">Idioma</label>
+            <input type="text" name="idioma" th:field="*{idioma}">
+            <br>
+            <label for="apto">Apto</label>
+            <input type="text" name="apto" th:field="*{apto}">
+            <br>
+            <input type="submit" name="guardar"  value="Guardar"/>
+        </form>
+        </div>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>
