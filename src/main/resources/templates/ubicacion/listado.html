@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+
+        <header th:replace="layout/plantillaMenuCliente :: header"></header>
+
+        <div class="contenido">
+            <h2>Listado de Ubicaciones</h2>
+            <br>
+            <a th:href="@{/ubicacion/modifica}">Nueva Ubicacion</a>
+            <br>
+            <br>
+            <div th:if="${ubicacion != null and !ubicacion.empty}">
+                <table border="1">
+                    <tr>
+                        <td>Lugar</td>
+                        
+                        
+                    </tr>
+                    <tr th:each="item : ${ubicacion}">
+                        <td th:text="${item.ubicacion}"></td>
+                        
+                       
+                        <td><a th:href="@{/ubicacion/modificar/} + ${item.idUbi}">Modificar</a></td>
+                        <td><a th:href="@{/ubicacion/eliminar/} + ${item.idUbi}">Eliminar</a></td>
+
+                    </tr>
+                </table>
+            </div>
+            <div th:if="${ubicacion == null or ubicacion.empty}">
+               No tenemos Ubicacion para mostrar
+            </div>
+        </div>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>

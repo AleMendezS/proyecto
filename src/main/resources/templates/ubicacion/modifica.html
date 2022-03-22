@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Nuevo empleado </title>
+        <meta charset="UTF-8">
+        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
+
+
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        <div class="contenido">
+       
+        <br>
+        <form th:action="@{/ubicacion/guardar}"
+              method="post"
+              th:object="${ubicacion}">
+            <input type="hidden" name ="idUbi" th:field="*{idUbi}"/>
+            <label for="ubicacion">Ubicacion</label>
+            <input type="text" name="ubicacion" th:field="*{ubicacion}">
+            <br>
+            <input type="submit" name="guardar"  value="Guardar"/>
+        </form>
+        </div>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>

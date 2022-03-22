@@ -35,10 +35,23 @@ public class Configurations {
 }
     
     @Bean
-    public SpringResourceTemplateResolver TemplateResolver_3 (){
+    public SpringResourceTemplateResolver TemplateResolver_2 (){
     SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
     
     templateResolver.setPrefix("templates/cliente/");
+    templateResolver.setSuffix(".html");
+    templateResolver.setTemplateMode(TemplateMode.HTML);
+    templateResolver.setCharacterEncoding("UTF-8");
+    templateResolver.setOrder(2);
+    templateResolver.setCheckExistence(true);
+    return templateResolver;
+}
+    
+     @Bean
+    public SpringResourceTemplateResolver TemplateResolver_3 (){
+    SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
+    
+    templateResolver.setPrefix("templates/ubicacion/");
     templateResolver.setSuffix(".html");
     templateResolver.setTemplateMode(TemplateMode.HTML);
     templateResolver.setCharacterEncoding("UTF-8");
