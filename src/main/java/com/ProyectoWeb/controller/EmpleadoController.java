@@ -35,7 +35,7 @@ public class EmpleadoController {
     @PostMapping("/empleado/guardar")
     public String guardarEmpleado (Empleado empleado){
         empleadoService.save(empleado);
-        return "redirect:/empleado/listado";
+        return "/empleado/menuEmpleado";
     }
     
     @GetMapping("/empleado/modificar/{idEmpleado}")

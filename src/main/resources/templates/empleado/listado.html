@@ -8,15 +8,15 @@
     </head>
     <body>
 
-        <header th:replace="layout/plantilla :: header"></header>
+        <header th:replace="layout/plantillaMenuEmpleado :: header"></header>
 
         <div class="contenido">
-            <h2>Listado de Clientes</h2>
+            <h2>Listado de Empleados</h2>
             <br>
-            <a th:href="@{/cliente/nuevo}">Nuevo Cliente</a>
+            <a th:href="@{/empleado/login}">Nuevo Empleado</a>
             <br>
             <br>
-            <div th:if="${clientes != null and !clientes.empty}">
+            <div th:if="${empleados != null and !empleados.empty}">
                 <table border="1">
                     <tr>
                         <td>Nombre</td>
@@ -25,20 +25,20 @@
                         <td>Password</td>
                         
                     </tr>
-                    <tr th:each="item : ${clientes}">
+                    <tr th:each="item : ${empleados}">
                         <td th:text="${item.nombre}"></td>
                         <td th:text="${item.apellidos}"></td>
                         <td th:text="${item.cedula}"></td>
                         <td th:text="${item.pasword}"></td>
                        
-                        <td><a th:href="@{/cliente/modificar/} + ${item.idCliente}">Modificar</a></td>
-                        <td><a th:href="@{/cliente/eliminar/} + ${item.idCliente}">Eliminar</a></td>
+                        <td><a th:href="@{/empleado/modificar/} + ${item.idEmpleado}">Modificar</a></td>
+                        <td><a th:href="@{/empleado/eliminar/} + ${item.idEmpleado}">Eliminar</a></td>
 
                     </tr>
                 </table>
             </div>
-            <div th:if="${clientes == null or clientes.empty}">
-               No tenemos clientes para mostrar
+            <div th:if="${empleados == null or empleados.empty}">
+               No tenemos empleados para mostrar
             </div>
         </div>
         <footer th:replace="layout/plantilla :: footer"></footer>

@@ -9,7 +9,7 @@ body {
 }
 
 .header {
-    background-color: #076AF0;
+    background-color: #ECECEC;
     height: 80px;
     position: fixed;
     top: 0;
@@ -34,6 +34,7 @@ body {
     font-weight: bold;
     padding: 0 40px;
     line-height: 80px;
+     background-color: #B20D34;
 }
 
 .nav-menu {
@@ -47,10 +48,11 @@ body {
     margin: 0 10px;
     line-height: 80px;
     width: max-content;
+      background-color: #B20D34;
 }
 
 .nav-menu-item:hover {
-    background-color: #024070;
+    background-color: #000000;
     transition: 0.5s;
 }
 
@@ -71,7 +73,7 @@ body {
     
 }
 .contenido{
-    background-color: wheat;
+    background-color: white;
     position: fixed;
     top: 80px;
     bottom: 20px;
