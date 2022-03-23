@@ -1,0 +1,44 @@
+<!DOCTYPE html >
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header class="cabecera">
+            <div id="contenedor" >
+        <form th:fragment="contenido" id="cuerpo">
+            
+            <label class="titulo" for="nombre">Nombre</label>
+            <input id="camponombre" type="text" name="nombre" th:field="*{nombre}">
+            <br>
+            <label id="campoapellido" for="apellidos">Apellidos</label>
+            <input type="text" name="apellidos" th:field="*{apellidos}">
+            <br>
+            <label class="campotexto" for="cedula">Cedula</label>
+            <input type="number" name="cedula" th:field="*{cedula}">
+            <br>
+            <label  for="pasword">Password</label>
+            <input class="campotexto" type="number" name="pasword" th:field="*{pasword}">
+            <br>
+            <!--Boton-->
+	<br><div id="boton"><a name="guardar" href="#">
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+		Registrarse
+	</a></div>
+            
+            
+        </form>
+        </div>
+                    
+                </form>
+            </div>
+            
+        </header> 
+    </body>
+</html>
