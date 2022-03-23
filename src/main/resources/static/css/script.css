@@ -40,4 +40,12 @@ idioma VARCHAR (10) NOT NULL,
 apto INT NOT NULL, 
 PRIMARY KEY (id_pelicula))
 ENGINE = innoDB;
+
+CREATE TABLE proyecto.combo (
+id_combo INT NOT NULL AUTO_INCREMENT,
+nombre VARCHAR(10) NOT NULL,
+descripcion VARCHAR(10) NOT NULL,
+precio double,
+PRIMARY KEY (id_combo))
+ENGINE = innoDB;
 */

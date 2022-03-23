@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+
+        <header th:replace="layout/plantillaMenuCliente :: header"></header>
+
+        <div class="contenido">
+            <h2>Listado de Combos</h2>
+            <br>
+            <a th:href="@{/combo/modifica}">Nuevo combo</a>
+            <br>
+            <br>
+            <div th:if="${combos != null and !combos.empty}">
+                <table border="1">
+                    <tr>
+                        <td>NOMBRE COMBO</td>
+                        <td>DESCRIPCION</td> 
+                        <td>PRECIO</td> 
+                        
+                        
+                        
+                    </tr>
+                    <tr th:each="item : ${combos}">
+                        <td th:text="${item.nombre}"></td>
+                        <td th:text="${item.descripcion}"></td>
+                        <td th:text="${item.precio}"></td>
+                       
+                       
+                        <td><a th:href="@{/combo/modificar/} + ${item.idPelicula}">Modificar</a></td>
+                        <td><a th:href="@{/combo/eliminar/} + ${item.idPelicula}">Eliminar</a></td>
+
+                    </tr>
+                </table>
+            </div>
+            <div th:if="${combos == null or combos.empty}">
+               No tenemos Combos para mostrar
+            </div>
+        </div>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>
