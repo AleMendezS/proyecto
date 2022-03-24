@@ -2,19 +2,19 @@ body{
    background-color:white; 
 }
 #contenedor{
-	
-	position:relative;
-	width:520PX;
-	height:460px;
-	margin:0px auto;
-	margin-top:50px;
+
+    position:relative;
+    width:520PX;
+    height:460px;
+    margin:0px auto;
+    margin-top:50px;
 padding:40px;
 
 
-} 
+}
 /*Para el color del borde de la caja del login
 #contendor:before{
-	content:'';
+    content:'';
 position:absolute;
 top:-2px;
 left:-2px;
@@ -43,13 +43,13 @@ float:right;
 margin-right:118px;
 }
 #contenedor label{
-    margin-bottom:10px;
+   
     text-transform:uppercase;
     
 }
 #contenedor input[name="nombre"], #contenedor input[name="apellidos"]{
-	position:relative;
-	display:inline-block;
+position:relative;
+display:inline-block;
 height:30px;
 width:44%;
 background:transparent;
@@ -60,8 +60,12 @@ border:2px outset;
 border-top-color:#b20d34;
 border-left-color:#b20d34;
 margin-bottom:10px;
+margin-top: 10px;
 }
-
+#contenedor input[name="apellidos"]{
+    float: right;
+    margin-right: 12px;
+}
 #contenedor input[name="nombre"]:focus, #contenedor input[name="apellidos"]:focus{
     border:2px inset #b20d34;
     box-shadow: 0 0 10px #b20d34;
@@ -71,7 +75,7 @@ margin-bottom:10px;
     color:gray;
       }
 #contenedor input[name="nombre"]{
-	margin-right:40px;
+    margin-right:40px;
 }
 #contenedor input[name="pasword"], #contenedor input[name="cedula"]{
 height:30px;
@@ -96,22 +100,22 @@ outline:none;
 
 /*Boton registrar*/
 #boton{
-	text-align:center;
-	margin:40px;
+    text-align:center;
+    margin:40px;
 }
 #boton input[name="guardar"]{
    
 outline:none;
 border:none;
 background-color: transparent;
-	position:relative;
-	display:inline-block;
-	text-decoration:none;
-	padding: 15px 30px;
-	font-size:24px;
-	color:#b20d34;
-	text-transform:uppercase;
-	letter-spacing: 3px;
+    position:relative;
+    display:inline-block;
+    text-decoration:none;
+    padding: 15px 30px;
+    font-size:24px;
+    color:#b20d34;
+    text-transform:uppercase;
+    letter-spacing: 3px;
 overflow:hidden;
 transition:0.5s;
 
@@ -122,75 +126,4 @@ background:#b20d34;
 box-shadow: 0px 0px 10px #b20d34,
  0px 0px 40px #b20d34 ,0px 0px 80px #b20d34;
  cursor:pointer;
-}/*Animacion para el boton*/
-/*#boton a span{
-    overflow:hidden;
-position:absolute;
-display:block;
-float:right;
 }
-
-#boton a span:nth-child(1){
-	top: 0;
-	left: 100%;
-	width:100%;
-	height:2px;
-	background:linear-gradient(90deg,transparent,#b20d34);
-	animation:animate1 1s linear infinite;
-}
-@keyframes animate1{
-0%{
-	left:-100%;
-}50%,100%{
-	left:100%;
-}
-}
-a span:nth-child(3){
-	bottom: 0;
-	right: -100%;
-	width:100%;
-	height:2px;
-	background:linear-gradient(270deg,transparent,#b20d34);
-animation:animate3 1s linear infinite;
-animation-delay:0.5s;
-}
-@keyframes animate3{
-0%{
-	right:-100%;
-}50%,100%{
-	right:100%;
-}
-}
-
-a span:nth-child(4){
-	bottom: -100%;
-	left: 0;
-	width:2px;
-	height:100%;
-	background:linear-gradient(180deg,transparent,#b20d34);
-	animation:animate4 1s linear infinite;
-animation-delay:0.75s;
-}
-@keyframes animate4{
-0%{
-	bottom:-100%;
-}50%,100%{
-	bottom:100%;
-}
-}
-a span:nth-child(2){
-	top: -100%;
-	right: 0;
-	width:2px;
-	height:100%;
-	background:linear-gradient(180deg,transparent,#b20d34);
-	animation:animate2 1s linear infinite;
-animation-delay:0.25s;
-}
-@keyframes animate2{
-0%{
-	top:-100%;
-}50%,100%{
-	top:100%;
-}
-}*/

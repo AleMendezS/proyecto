@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Nuevo empleado </title>
+        <meta charset="UTF-8">
+        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/estiloLogin.css" rel="stylesheet" type="text/css"/>
+
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        <div id="contenedor">
+       
+        <br>
+        <form th:action="@{/empleado/guardar}"
+              method="post"
+              th:object="${empleado}">
+            <input type="hidden" name ="idEmpleado" th:field="*{idEmpleado}"/>
+          <label for="nombre">Nombre</label>
+            <label id="tituloapellido" for="apellidos">Apellidos</label>
+            <input type="text" name="nombre" placeholder="Nombre" th:field="*{nombre}">
+            <input type="text" name="apellidos" placeholder="Apellidos" th:field="*{apellidos}">
+            <br>
+            <label for="cedula">Cedula</label>
+            <input type="number" name="cedula" placeholder="Cedula" th:field="*{cedula}">
+            <br>
+            <label for="pasword">Password</label>
+            <input type="number" name="pasword" placeholder="Contraseña" th:field="*{pasword}">
+               <!--Boton-->
+	<br>
+         <div id="boton"><a>
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+                <input type="submit" name="guardar" value="Modificar"> 
+            </a></div>
+        </form>
+        </div>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>

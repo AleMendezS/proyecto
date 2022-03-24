@@ -37,12 +37,16 @@ public class ClienteController {
         clienteService.save(cliente);
         return "/cliente/menuCliente";
     }
-    
+    @PostMapping("/cliente/save")
+    public String saveCliente (Cliente cliente){
+        clienteService.save(cliente);
+        return "/empleado/menuEmpleado";
+    }
     @GetMapping("/cliente/modificar/{idCliente}")
     public String modificarCliente (Cliente cliente, Model model){
         var respuesta = clienteService.getCliente(cliente);
         model.addAttribute("cliente",respuesta);
-        return "/cliente/modifica";
+        return "/cliente/loginModifica";
     }
     
     @GetMapping ("/cliente/eliminar/{idCliente}")

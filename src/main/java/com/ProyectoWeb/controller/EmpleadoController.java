@@ -42,7 +42,7 @@ public class EmpleadoController {
     public String modificarEmpleado (Empleado empleado, Model model){
         var respuesta = empleadoService.getEmpleado(empleado);
         model.addAttribute("empleado",respuesta);
-        return "/empleado/modifica";
+        return "/empleado/loginModifica";
     }
     
     @GetMapping ("/empleado/eliminar/{idEmpleado}")
