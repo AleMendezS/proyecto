@@ -35,14 +35,14 @@ public class EmpleadoController {
     @PostMapping("/empleado/guardar")
     public String guardarEmpleado (Empleado empleado){
         empleadoService.save(empleado);
-        return "/empleado/menuEmpleado";
+          return "redirect:/empleado/listado";
     }
     
     @GetMapping("/empleado/modificar/{idEmpleado}")
     public String modificarEmpleado (Empleado empleado, Model model){
         var respuesta = empleadoService.getEmpleado(empleado);
         model.addAttribute("empleado",respuesta);
-        return "/empleado/loginModifica";
+        return "/empleado/modifica";
     }
     
     @GetMapping ("/empleado/eliminar/{idEmpleado}")

@@ -33,7 +33,7 @@ public class PeliculaController {
     @PostMapping("/pelicula/guardar")
     public String guardarPelicula (Pelicula pelicula){
         peliculaService.save(pelicula);
-        return "/empleado/menuEmpleado";
+       return "redirect:/pelicula/listado";
     }
     
     @GetMapping("/pelicula/modificar/{idPelicula}")

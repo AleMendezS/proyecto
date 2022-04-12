@@ -18,17 +18,17 @@ public class Pelicula implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPelicula;
-    private String pelicula;
+    private String nombre;
     private String genero;
     private String idioma;
-    private int apto;
+    private String apto;
     
 
     public Pelicula() {
     }
 
-    public Pelicula(String pelicula, String genero, String idioma, int apto) {
-        this.pelicula = pelicula;
+    public Pelicula(String nombre, String genero, String idioma, String apto) {
+        this.nombre = nombre;
         this.genero = genero;
         this.idioma = idioma;
         this.apto = apto;

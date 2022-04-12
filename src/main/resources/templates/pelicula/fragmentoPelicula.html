@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3" sec:authorize="hasRole('ROLE_ADMIN')">   
+                        <button 
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarPelicula">
+                            <i class="fas fa-plus"></i> [[#{accion.agregar}]]
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section th:fragment="listadoPeliculas" id="peliculas">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{pelicula.titulo}]]</h4>
+                            </div>
+                            <div th:if="${peliculas != null and !peliculas.empty}">
+                                <table class="table table-stryped">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th th:text="#{pelicula.nombre}">Pelicula</th>
+                                            <th th:text="#{pelicula.genero}">Genero</th>
+                                            <th th:text="#{pelicula.apto}">Apto</th>
+                                            <th th:text="#{pelicula.idioma}">Idioma</th>
+                                           
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="pelicula, contador : ${peliculas}">
+                                            <td>[[${pelicula.nombre}]]</td>
+                                            <td>[[${pelicula.genero} ]]</td>
+                                           <td>[[${pelicula.apto}]]</td>
+                                            <td>[[${pelicula.idioma}]]</td>
+                                            <td>
+                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/pelicula/eliminar/}+${pelicula.idPelicula}"
+                                                   class="btn btn-danger">
+                                                    <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/pelicula/modificar/}+${pelicula.idPelicula}"
+                                                   class="btn btn-primary">
+                                                    <i class="fas fa-pen"></i> [[#{accion.actualizar}]]
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center p-2" th:if="${peliculas == null or peliculas.empty}">
+                                <span th:text="#{pelicula.no_mostrar}">Lista vacía</span>
+                            </div>
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+        </section>
+        <section th:fragment="agregarPelicula">
+            <div id="agregarPelicula" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title" th:text="#{accion.agregar}">Agregar Pelicula</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> 
+                        <form th:action="@{/pelicula/guardar}" th:object="${pelicula}"
+                              method="POST" class="was-validated">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="nombre" th:text="#{pelicula.nombre}">Pelicula</label>
+                                    <input type="text" class="form-control" name="nombre" required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="genero" th:text="#{pelicula.genero}">Genero</label>
+                                    <input type="text" class="form-control" name="genero" required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="apto" th:text="#{pelicula.apto}">Apto</label>
+                                    <input type="text" class="form-control" name="apto" required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="idioma" th:text="#{pelicula.idioma}">Idioma</label>
+                                    <input type="text" class="form-control" name="idioma">
+                                </div>
+                               
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section th:fragment="editarPelicula">            
+            <form method="POST"
+                  th:action="@{/pelicula/guardar}"
+                  th:object="${pelicula}"
+                  class="was-validated">
+                <input type="hidden" name="idPelicula" th:field="*{idPelicula}"/>
+                <section th:replace="pelicula/fragmentoPelicula :: botonesEditar"/> 
+                <div id="details">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>[[#{accion.actualizar}]]</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="nombre" th:text="#{pelicula.nombre}">Pelicula </label>
+                                            <input type="text" class="form-control" name="nombre" th:field="*{nombre}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="genero" th:text="#{pelicula.genero}">Genero </label>
+                                            <input type="text"  class="form-control" name="genero" th:field="*{genero}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="apto" th:text="#{pelicula.apto}">Apto </label>
+                                            <input type="text"  class="form-control" name="apto" th:field="*{apto}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="idioma" th:text="#{pelicula.idioma}">Idioma </label>
+                                            <input type="text"  class="form-control" name="idioma" th:field="*{idioma}"/>
+                                        </div>
+                                       
+                                        </div>                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+        <section th:fragment="botonesEditar">
+            <div id="actions" class="py-4 mb-4 bg-light">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a th:href="@{/pelicula/listado}" class="btn btn-ligth btn-block">
+                                <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-success btn-block">
+                                <i class="fas fa-check"></i> [[#{accion.guardar}]]
+                            </button>
+                        </div>
+                        <div class="col-md-3">
+                            <a th:href="@{/pelicula/eliminar/}+${pelicula.idPelicula}"
+                               class="btn btn-danger btn-block">
+                                <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </body>
+</html>

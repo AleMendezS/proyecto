@@ -1,46 +1,17 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+    <head th:replace="layout/plantilla :: head">
+        <title>Listado</title>
     </head>
     <body>
+        <header th:replace="layout/plantilla :: header" />
 
-        <header th:replace="layout/plantillaMenuEmpleado :: header"></header>
+        <section th:replace="empleado/fragmentoEmpleado :: botonesAgregar"/>
+        <section th:replace="empleado/fragmentoEmpleado :: agregarEmpleado"/>
+        <section th:replace="empleado/fragmentoEmpleado :: listadoEmpleados"/>
 
-        <div class="contenido">
-            <h2>Listado de Empleados</h2>
-            <br>
-            <a th:href="@{/empleado/login}">Nuevo Empleado</a>
-            <br>
-            <br>
-            <div th:if="${empleados != null and !empleados.empty}">
-                <table border="1">
-                    <tr>
-                        <td>Nombre</td>
-                        <td>Apellidos</td>
-                        <td>Cedula</td>
-                        <td>Password</td>
-                        
-                    </tr>
-                    <tr th:each="item : ${empleados}">
-                        <td th:text="${item.nombre}"></td>
-                        <td th:text="${item.apellidos}"></td>
-                        <td th:text="${item.cedula}"></td>
-                        <td th:text="${item.pasword}"></td>
-                       
-                        <td><a th:href="@{/empleado/modificar/} + ${item.idEmpleado}">Modificar</a></td>
-                        <td><a th:href="@{/empleado/eliminar/} + ${item.idEmpleado}">Eliminar</a></td>
-
-                    </tr>
-                </table>
-            </div>
-            <div th:if="${empleados == null or empleados.empty}">
-               No tenemos empleados para mostrar
-            </div>
-        </div>
-        <footer th:replace="layout/plantilla :: footer"></footer>
+        <footer th:replace="layout/plantilla :: footer" />
     </body>
 </html>

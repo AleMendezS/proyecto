@@ -1,0 +1,50 @@
+drop schema proyecto ;
+drop user usuario_prueba;
+
+
+CREATE SCHEMA proyecto ;
+
+create user 'usuario_prueba'@'%' identified by 'Usuar1o_Clave.';
+grant all privileges on proyecto.* to 'usuario_prueba'@'%';
+flush privileges;
+
+CREATE TABLE proyecto.empleado (
+id_empleado INT NOT NULL AUTO_INCREMENT,
+nombre VARCHAR(25) NOT NULL,
+apellidos VARCHAR (25) NOT NULL,
+cedula int NOT NULL,
+pasword int NOT NULL, 
+PRIMARY KEY (id_empleado))
+ENGINE = innoDB;
+
+CREATE TABLE proyecto.cliente (
+id_cliente INT NOT NULL AUTO_INCREMENT,
+nombre VARCHAR(25) NOT NULL,
+apellidos VARCHAR (25) NOT NULL,
+cedula int NOT NULL,
+pasword int NOT NULL, 
+PRIMARY KEY (id_cliente))
+ENGINE = innoDB;
+
+CREATE TABLE proyecto.ubicacion (
+id_ubi INT NOT NULL AUTO_INCREMENT,
+ubicacion VARCHAR(25) NOT NULL,
+PRIMARY KEY (id_ubi))
+ENGINE = innoDB;
+
+CREATE TABLE proyecto.pelicula (
+id_pelicula INT NOT NULL AUTO_INCREMENT,
+pelicula VARCHAR(10) NOT NULL,
+genero VARCHAR (10) NOT NULL,
+idioma VARCHAR (10) NOT NULL,
+apto INT NOT NULL, 
+PRIMARY KEY (id_pelicula))
+ENGINE = innoDB;
+
+CREATE TABLE proyecto.combo (
+id_combo INT NOT NULL AUTO_INCREMENT,
+nombre VARCHAR(50) NOT NULL,
+descripcion VARCHAR(50) NOT NULL,
+precio double,
+PRIMARY KEY (id_combo))
+ENGINE = innoDB;

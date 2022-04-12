@@ -1,7 +1,7 @@
 package com.ProyectoWeb.controller;
 
 
-import com.ProyectoWeb.service.ClienteService;
+import com.ProyectoWeb.service.PeliculaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,12 +13,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class IndexController {
 
     @Autowired
- private ClienteService clienteService;
+ private PeliculaService peliculaService;
+   
+    
+    
     @GetMapping("/")
     public String inicio(Model model) {
         log.info("Ahora se usa arquitectura MVC");
-  var clientes = clienteService.getClientes();
-        model.addAttribute("clientes", clientes);
+
+        var peliculas = peliculaService.getPeliculas();
+        model.addAttribute("peliculas", peliculas);
+      
+       
         return "Index";
     }
 }

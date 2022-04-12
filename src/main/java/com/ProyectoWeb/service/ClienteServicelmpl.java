@@ -39,4 +39,10 @@ public class ClienteServicelmpl implements ClienteService {
      return clienteDao.findById(cliente.getIdCliente()).orElse(null);
     }
 
+    
+    @Override
+    public List<Cliente> findByCedula(int cedula) {
+        
+     return clienteDao.findByCedula(cedula);
+    }
 }

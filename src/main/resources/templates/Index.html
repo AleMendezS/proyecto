@@ -1,18 +1,28 @@
 <!DOCTYPE html>
-
-<html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
-
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://wwww.thymeleaf.org" 
+      xmlns:sec="http://thymeleaft.org/extras/spring-security">
+    <head th:replace="layout/plantilla :: head">
+        <title>AutoCine</title>
     </head>
     <body>
-
-        <header th:replace="layout/plantilla :: header"></header>
-        <div class="contenido">
-          
+        <header th:replace="layout/plantilla :: header"/>
+        <div class="container">
+            <h2 th:text="#{index.titulo}">Nuestros Articulos</h2>            
+            <div class="row row-cols-3" th:if="${peliculas != null and !peliculas.empty}">
+                <div class="card" th:each="pelicula : ${peliculas}" >
+               <img th:src="@{/images/} + pelicula.imagen" class="card-img-top" alt="pelicula">  
+            
+                    <div class="card-body">
+                        <h5 class="card-title">[[${pelicula.nombre}]]</h5>
+                                  
+                    </div>
+                </div>                
+            </div>
+            <div th:if="${peliculas == null or peliculas.empty}"  th:text="#{pelicula.no_mostrar}">
+                No tenemos lista de peliculas que mostrar...
+            </div>
         </div>
-        <footer th:replace="layout/plantilla :: footer"></footer>
+        <footer th:replace="layout/plantilla :: footer"/>
     </body>
 </html>

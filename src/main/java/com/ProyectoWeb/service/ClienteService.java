@@ -13,4 +13,6 @@ public interface ClienteService {
     public void delete(Cliente cliente);
     
     public Cliente getCliente (Cliente cliente);
+    
+    public List<Cliente> findByCedula(int cedula);
 }
