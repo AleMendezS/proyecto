@@ -1,11 +1,11 @@
-/*drop schema proyecto ;
-drop user usuario_prueba;
+/*drop schema proyecto;
+drop user usuario;
 
 
 CREATE SCHEMA proyecto ;
 
-create user 'usuario_prueba'@'%' identified by 'Usuar1o_Clave.';
-grant all privileges on proyecto.* to 'usuario_prueba'@'%';
+create user 'usuario'@'%' identified by 'Usuar1o_Clave.';
+grant all privileges on proyecto.* to 'usuario'@'%';
 flush privileges;
 
 CREATE TABLE proyecto.empleado (
@@ -43,9 +43,29 @@ ENGINE = innoDB;
 
 CREATE TABLE proyecto.combo (
 id_combo INT NOT NULL AUTO_INCREMENT,
-nombre VARCHAR(50) NOT NULL,
-descripcion VARCHAR(50) NOT NULL,
+nombre VARCHAR(10) NOT NULL,
+descripcion VARCHAR(10) NOT NULL,
 precio double,
 PRIMARY KEY (id_combo))
 ENGINE = innoDB;
-*/
+
+
+drop table proyecto.pelicula;
+CREATE TABLE proyecto.pelicula(
+id_pelicula INT NOT NULL AUTO_INCREMENT,
+nombre VARCHAR(30) NOT NULL,
+genero VARCHAR(30) NOT NULL,
+apto VARCHAR (30)  NOT NULL, 
+idioma VARCHAR (30) NOT NULL,
+imagen VARCHAR (15) NOT NULL,
+PRIMARY KEY (id_pelicula))
+ENGINE = innoDB;
+
+INSERT INTO proyecto.pelicula (nombre, genero, apto,idioma,imagen)
+    VALUES ('Doctor Strange','Accion', 'TP', 'ESP/ING/SUB','avengers.jpg'),
+           ('Jujutsu Kaisen','Anime', 'TP', 'JAP/SUB','jujutsu.jpg'),
+           ('A ciegas','Terror', '+18', 'ESP/ING/SUB','jujutsu.jpg'),
+           ('Posesion Diabolica','Terror', '+18', 'ESP/ING/SUB','jujutsu.jpg'),
+           ('Sonic 2','Accion', 'TP', 'ING/SUB','jujutsu.jpg'),
+           ('Uncharted','Accion', 'TP', 'ESP/ING/SUB','jujutsu.jpg'),
+           ('Batman', 'Accion','+15', 'ESP/ING/SUB','jujutsu.jpg');*/
