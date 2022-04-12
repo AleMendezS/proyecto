@@ -34,8 +34,8 @@
                                 <table class="table table-stryped">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th th:text="#{combo.nombre}">Nombre</th>
-                                            <th th:text="#{combo.descripcion}">Descripcion</th>
+                                            
+                                            <th th:text="#{combo.decripcion}">Descrpcion</th>
                                             <th th:text="#{combo.precio}">Precio</th>
                                            
                                             <th></th>
@@ -44,7 +44,7 @@
                                     </thead>
                                     <tbody>
                                         <tr th:each="combo, contador : ${combos}">
-                                            <td>[[${combo.nombre}]]</td>
+                                            
                                             <td>[[${combo.descripcion}]]</td>
                                            <td>[[${combo.precio}]]</td>
                                             <td>
@@ -73,7 +73,7 @@
             </div>
         </section>
         <section th:fragment="agregarCombo">
-            <div id="agregarEmpleado" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div id="agregarCombo" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header bg-info text-white">
@@ -83,19 +83,16 @@
                         <form th:action="@{/combo/guardar}" th:object="${combo}"
                               method="POST" class="was-validated">
                             <div class="modal-body">
-                                <div class="form-group">
-                                    <label for="nombre" th:text="#{combo.nombre}">Nombre Combo</label>
-                                    <input type="text" class="form-control" name="nombre" required="true">
-                                </div>
+                                
                                 <div class="form-group">
                                     <label for="descripcion" th:text="#{combo.descripcion}">Descripcion</label>
                                     <input type="text" class="form-control" name="descripcion" required="true">
                                 </div>
                                 <div class="form-group">
                                     <label for="precio" th:text="#{combo.precio}">Precio</label>
-                                    <input type="number" class="form-control" name="precio" required="true">
+                                    <input type="text" class="form-control" name="precio" required="true">
                                 </div>
-                                
+                               
                                
                             </div>
                             <div class="modal-footer">
@@ -122,17 +119,14 @@
                                         <h4>[[#{accion.actualizar}]]</h4>
                                     </div>
                                     <div class="card-body">
-                                        <div class="form-group">
-                                            <label for="nombre" th:text="#{combo.nombre}">Nombre: </label>
-                                            <input type="text" class="form-control" name="nombre" th:field="*{nombre}"/>
-                                        </div>
+                                        
                                         <div class="form-group">
                                             <label for="descripcion" th:text="#{combo.descripcion}">Descripcion </label>
                                             <input type="text"  class="form-control" name="descripcion" th:field="*{descripcion}"/>
                                         </div>
                                         <div class="form-group">
                                             <label for="precio" th:text="#{combo.precio}">Precio </label>
-                                            <input type="number"  class="form-control" name="precio" th:field="*{precio}"/>
+                                            <input type="text"  class="form-control" name="precio" th:field="*{precio}"/>
                                         </div>
                                         
                                        

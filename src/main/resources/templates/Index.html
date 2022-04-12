@@ -13,8 +13,9 @@
   <iframe src="https://www.youtube.com/embed/D9AzGVmMVpk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
         <div class="container">
-            <h2 th:text="#{index.titulo}">Nuestros Articulos</h2>            
-            <div class="row row-cols-3" th:if="${peliculas != null and !peliculas.empty}">
+            <h2 th:text="#{index.titulo}">Nuestros Articulos</h2>
+            
+            <div class="row row-cols-6" th:if="${peliculas != null and !peliculas.empty}">
                 <div class="card" th:each="pelicula : ${peliculas}" >
                <img src="/images/avengers.jpg" class="card-img-top" alt="pelicula">  
             

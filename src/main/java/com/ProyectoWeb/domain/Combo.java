@@ -12,26 +12,23 @@ import lombok.Data;
 @Entity
 @Table(name = "combo")
 public class Combo implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCombo;
-    private String nombre;
     private String descripcion;
-    private double precio;
-    
+    private String precio;
 
     public Combo() {
     }
 
-    public Combo(String nombre, String descripcion, double precio) {
-        
-        this.nombre = nombre;
+    public Combo(String descripcion, String precio) {
+
         this.descripcion = descripcion;
         this.precio = precio;
-        
+
     }
 
 }
