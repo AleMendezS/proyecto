@@ -1,47 +1,17 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+    <head th:replace="layout/plantilla :: head">
+        <title>Listado</title>
     </head>
     <body>
+        <header th:replace="layout/plantilla :: header" />
 
-        <header th:replace="layout/plantillaMenuCliente :: header"></header>
+        <section th:replace="combo/fragmentosCombo :: botonesAgregar"/>
+        <section th:replace="combo/fragmentosCombo :: agregarCombo"/>
+        <section th:replace="combo/fragmentosCombo :: listadoCombos"/>
 
-        <div class="contenido">
-            <h2>Listado de Combos</h2>
-            <br>
-            <a th:href="@{/combo/modifica}">Nuevo combo</a>
-            <br>
-            <br>
-            <div th:if="${combos != null and !combos.empty}">
-                <table border="1">
-                    <tr>
-                        <td>NOMBRE COMBO</td>
-                        <td>DESCRIPCION</td> 
-                        <td>PRECIO</td> 
-                        
-                        
-                        
-                    </tr>
-                    <tr th:each="item : ${combos}">
-                        <td th:text="${item.nombre}"></td>
-                        <td th:text="${item.descripcion}"></td>
-                        <td th:text="${item.precio}"></td>
-                       
-                       
-                        <td><a th:href="@{/combo/modificar/} + ${item.idCombo}">Modificar</a></td>
-                        <td><a th:href="@{/combo/eliminar/} + ${item.idCombo}">Eliminar</a></td>
-
-                    </tr>
-                </table>
-            </div>
-            <div th:if="${combos == null or combos.empty}">
-               No tenemos Combos para mostrar
-            </div>
-        </div>
-        <footer th:replace="layout/plantilla :: footer"></footer>
+        <footer th:replace="layout/plantilla :: footer" />
     </body>
 </html>

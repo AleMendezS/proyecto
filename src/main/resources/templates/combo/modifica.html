@@ -1,34 +1,13 @@
-<!DOCTYPE html>
-
-<html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Nuevo combo </title>
-        <meta charset="UTF-8">
-        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
-
-
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://wwww.thymeleaf.org" 
+      xmlns:sec="http://thymeleaft.org/extras/spring-security">
+    <head th:replace="layout/plantilla :: head">
+        <title>TechShop</title>
     </head>
     <body>
-        <header th:replace="layout/plantilla :: header"></header>
-        <div class="contenido">
-       
-        <br>
-        <form th:action="@{/combo/guardar}"
-              method="post"
-              th:object="${combo}">
-            <input type="hidden" name ="idCombo" th:field="*{idCombo}"/>
-            <label for="pelicula">Nombre Combo</label>
-            <input type="text" name="nombre" th:field="*{nombre}">
-            <br>
-            <label for="descripcion">Descripcion</label>
-            <input type="text" name="descripcion" th:field="*{descripcion}">
-            <br>
-            <label for="precio">Precio</label>
-            <input type="number" name="precio" th:field="*{precio}">
-            <br>
-            <input type="submit" name="guardar"  value="Guardar"/>
-        </form>
-        </div>
-        <footer th:replace="layout/plantilla :: footer"></footer>
+        <header th:replace="layout/plantilla :: header" />
+        <section th:replace="combo/fragmentosCombo :: editarCombo"/> 
+        <footer th:replace="layout/plantilla :: footer" />
     </body>
 </html>

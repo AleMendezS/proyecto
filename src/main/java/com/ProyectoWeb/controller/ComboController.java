@@ -21,11 +21,9 @@ public class ComboController {
     @Autowired
     private ComboService comboService;
     @GetMapping("/combo/listado")
-    public String page(Model model) {
-        
+    public String inicio(Model model) {
         var combos = comboService.getCombos();
         model.addAttribute("combos", combos);
-        
         return "/combo/listado";
     }
     

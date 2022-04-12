@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3" sec:authorize="hasRole('ROLE_ADMIN')">   
+                        <button 
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarCombo">
+                            <i class="fas fa-plus"></i> [[#{accion.agregar}]]
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section th:fragment="listadoCombos" id="combos">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{combo.titulo}]]</h4>
+                            </div>
+                            <div th:if="${combos != null and !combos.empty}">
+                                <table class="table table-stryped">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th th:text="#{combo.nombre}">Nombre</th>
+                                            <th th:text="#{combo.descripcion}">Descripcion</th>
+                                            <th th:text="#{combo.precio}">Precio</th>
+                                           
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="combo, contador : ${combos}">
+                                            <td>[[${combo.nombre}]]</td>
+                                            <td>[[${combo.descripcion}]]</td>
+                                           <td>[[${combo.precio}]]</td>
+                                            <td>
+                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/combo/eliminar/}+${combo.idCombo}"
+                                                   class="btn btn-danger">
+                                                    <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/combo/modificar/}+${combo.idCombo}"
+                                                   class="btn btn-primary">
+                                                    <i class="fas fa-pen"></i> [[#{accion.actualizar}]]
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center p-2" th:if="${combos == null or combos.empty}">
+                                <span th:text="#{combo.no_mostrar}">Lista vacía</span>
+                            </div>
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+        </section>
+        <section th:fragment="agregarCombo">
+            <div id="agregarEmpleado" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title" th:text="#{accion.agregar}">Agregar Combo</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> 
+                        <form th:action="@{/combo/guardar}" th:object="${combo}"
+                              method="POST" class="was-validated">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="nombre" th:text="#{combo.nombre}">Nombre Combo</label>
+                                    <input type="text" class="form-control" name="nombre" required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="descripcion" th:text="#{combo.descripcion}">Descripcion</label>
+                                    <input type="text" class="form-control" name="descripcion" required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="precio" th:text="#{combo.precio}">Precio</label>
+                                    <input type="number" class="form-control" name="precio" required="true">
+                                </div>
+                                
+                               
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section th:fragment="editarCombo">            
+            <form method="POST"
+                  th:action="@{/combo/guardar}"
+                  th:object="${combo}"
+                  class="was-validated">
+                <input type="hidden" name="idCombo" th:field="*{idCombo}"/>
+                <section th:replace="combo/fragmentosCombo :: botonesEditar"/> 
+                <div id="details">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>[[#{accion.actualizar}]]</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="nombre" th:text="#{combo.nombre}">Nombre: </label>
+                                            <input type="text" class="form-control" name="nombre" th:field="*{nombre}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="descripcion" th:text="#{combo.descripcion}">Descripcion </label>
+                                            <input type="text"  class="form-control" name="descripcion" th:field="*{descripcion}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="precio" th:text="#{combo.precio}">Precio </label>
+                                            <input type="number"  class="form-control" name="precio" th:field="*{precio}"/>
+                                        </div>
+                                        
+                                       
+                                        </div>                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+        <section th:fragment="botonesEditar">
+            <div id="actions" class="py-4 mb-4 bg-light">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a th:href="@{/combo/listado}" class="btn btn-ligth btn-block">
+                                <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-success btn-block">
+                                <i class="fas fa-check"></i> [[#{accion.guardar}]]
+                            </button>
+                        </div>
+                        <div class="col-md-3">
+                            <a th:href="@{/combo/eliminar/}+${combo.idCombo}"
+                               class="btn btn-danger btn-block">
+                                <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </body>
+</html>

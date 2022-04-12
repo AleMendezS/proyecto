@@ -31,7 +31,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                              "/cliente/nuevo",              "/cliente/guardar",
                              "/cliente/modificar/**",       "/cliente/eliminar/**",
                              "/usuario/nuevo",              "/usuario/guardar",
-                             "/usuario/modificar/**",       "/usaurio/eliminar/**")
+                             "/usuario/modificar/**",       "/usaurio/eliminar/**",
+                             "/combo/nuevo",             "/combo/guardar",
+                             "/combo/modificar/**",      "/combo/eliminar/**")
                     .hasRole("ADMIN")
                
                 .antMatchers("/")

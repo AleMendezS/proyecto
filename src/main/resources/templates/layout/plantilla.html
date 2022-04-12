@@ -33,6 +33,10 @@
                                 <a class="nav-menu-link nav-link" th:href="@{/pelicula/listado}"
                                    th:text="#{plantilla.pelicula}">Peliculas</a>
                             </li>
+                            <li class="nav-item px-2">
+                                <a class="nav-menu-link nav-link" th:href="@{/combo/listado}"
+                                   th:text="#{plantilla.combo}">Combos</a>
+                            </li>
                             <li class="nav-item px-2"  sec:authorize="hasRole('ROLE_ADMIN')">
                                 <a class="nav-menu-link nav-link" th:href="@{/usuario/listado}"
                                    th:text="#{plantilla.usuarios}">Usuarios</a>
