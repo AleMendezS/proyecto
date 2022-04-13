@@ -15,11 +15,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication()
                 .withUser("admin")
                 .password("{noop}123")
-                .roles("ADMIN", "VENDEDOR", "USER")
+                .roles("ADMIN")
                 .and()
                 .withUser("cliente")
                 .password("{noop}1122")
-                .roles("VENDEDOR", "USER");
+                .roles("CLIENTE");
     }
     
     @Override    protected void configure(HttpSecurity http) throws Exception {
@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .hasRole("ADMIN")
                
                 .antMatchers("/")
-                    .hasAnyRole("ADMIN","USER")
+                    .hasAnyRole("ADMIN","CLIENTE")
                 .and()
                     .formLogin()
                     .loginPage("/login")

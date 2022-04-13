@@ -1,4 +1,4 @@
-/*drop schema proyecto;
+/*drop schema proyecto ;
 drop user usuario;
 
 
@@ -43,9 +43,9 @@ ENGINE = innoDB;
 
 CREATE TABLE proyecto.combo (
 id_combo INT NOT NULL AUTO_INCREMENT,
-nombre VARCHAR(10) NOT NULL,
-descripcion VARCHAR(10) NOT NULL,
-precio double,
+
+descripcion VARCHAR(30) NOT NULL,
+precio VARCHAR (15) NOT NULL,
 PRIMARY KEY (id_combo))
 ENGINE = innoDB;
 
@@ -57,15 +57,14 @@ nombre VARCHAR(30) NOT NULL,
 genero VARCHAR(30) NOT NULL,
 apto VARCHAR (30)  NOT NULL, 
 idioma VARCHAR (30) NOT NULL,
-imagen VARCHAR (15) NOT NULL,
 PRIMARY KEY (id_pelicula))
 ENGINE = innoDB;
 
-INSERT INTO proyecto.pelicula (nombre, genero, apto,idioma,imagen)
-    VALUES ('Doctor Strange','Accion', 'TP', 'ESP/ING/SUB','avengers.jpg'),
-           ('Jujutsu Kaisen','Anime', 'TP', 'JAP/SUB','jujutsu.jpg'),
-           ('A ciegas','Terror', '+18', 'ESP/ING/SUB','jujutsu.jpg'),
-           ('Posesion Diabolica','Terror', '+18', 'ESP/ING/SUB','jujutsu.jpg'),
-           ('Sonic 2','Accion', 'TP', 'ING/SUB','jujutsu.jpg'),
-           ('Uncharted','Accion', 'TP', 'ESP/ING/SUB','jujutsu.jpg'),
-           ('Batman', 'Accion','+15', 'ESP/ING/SUB','jujutsu.jpg');*/
+INSERT INTO proyecto.pelicula (nombre, genero, apto,idioma)
+    VALUES ('Doctor Strange','Accion', 'TP', 'ESP/ING/SUB'),
+           ('Jujutsu Kaisen','Anime', 'TP', 'JAP/SUB'),
+           ('A ciegas','Terror', '+18', 'ESP/ING/SUB'),
+           ('Posesion Diabolica','Terror', '+18', 'ESP/ING/SUB'),
+           ('Sonic 2','Accion', 'TP', 'ING/SUB'),
+           ('Uncharted','Accion', 'TP', 'ESP/ING/SUB'),
+           ('Batman', 'Accion','+15', 'ESP/ING/SUB');*/

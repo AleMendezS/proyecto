@@ -23,8 +23,8 @@
             </div>
         </section>
         <section th:fragment="listadoCombos" id="combos">
-            <div class="container">
-                <div class="row">
+            <div class="container" >
+                <div class="row" sec:authorize="hasRole('ROLE_ADMIN')" >
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
@@ -34,19 +34,19 @@
                                 <table class="table table-stryped">
                                     <thead class="thead-dark">
                                         <tr>
-                                            
-                                            <th th:text="#{combo.decripcion}">Descrpcion</th>
+
+                                            <th th:text="#{combo.descripcion}">Descripcion</th>
                                             <th th:text="#{combo.precio}">Precio</th>
-                                           
+
                                             <th></th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr th:each="combo, contador : ${combos}">
-                                            
+
                                             <td>[[${combo.descripcion}]]</td>
-                                           <td>[[${combo.precio}]]</td>
+                                            <td>[[${combo.precio}]]</td>
                                             <td>
                                                 <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/combo/eliminar/}+${combo.idCombo}"
                                                    class="btn btn-danger">
@@ -68,10 +68,29 @@
                             </div>
                         </div>
                     </div>
-                  
+                   
                 </div>
+                
+                  <div class="container"  sec:authorize="hasRole('ROLE_CLIENTE')">
+            <h2 th:text="#{index.titulo}">Nuestros Articulos</h2>
+            
+            <div class="row row-cols-6" th:if="${combos != null and !combos.empty}">
+                <div class="card" th:each="combo : ${combos}" >
+               <img src="/images/hamburguesa.jpg" class="card-img-top" alt="combo">  
+            
+                    <div class="card-body">
+                        <h5 class="card-title">[[${combo.descripcion}]]</h5>
+                                  
+                    </div>
+                </div>                
+            </div>
+            <div th:if="${combos == null or combos.empty}"  th:text="#{combo.no_mostrar}">
+                No tenemos lista de combos que mostrar...
+            </div>
+        </div>
             </div>
         </section>
+  
         <section th:fragment="agregarCombo">
             <div id="agregarCombo" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
@@ -83,7 +102,7 @@
                         <form th:action="@{/combo/guardar}" th:object="${combo}"
                               method="POST" class="was-validated">
                             <div class="modal-body">
-                                
+
                                 <div class="form-group">
                                     <label for="descripcion" th:text="#{combo.descripcion}">Descripcion</label>
                                     <input type="text" class="form-control" name="descripcion" required="true">
@@ -92,8 +111,8 @@
                                     <label for="precio" th:text="#{combo.precio}">Precio</label>
                                     <input type="text" class="form-control" name="precio" required="true">
                                 </div>
-                               
-                               
+
+
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
@@ -119,7 +138,7 @@
                                         <h4>[[#{accion.actualizar}]]</h4>
                                     </div>
                                     <div class="card-body">
-                                        
+
                                         <div class="form-group">
                                             <label for="descripcion" th:text="#{combo.descripcion}">Descripcion </label>
                                             <input type="text"  class="form-control" name="descripcion" th:field="*{descripcion}"/>
@@ -128,14 +147,14 @@
                                             <label for="precio" th:text="#{combo.precio}">Precio </label>
                                             <input type="text"  class="form-control" name="precio" th:field="*{precio}"/>
                                         </div>
-                                        
-                                       
-                                        </div>                    
-                                    </div>
+
+
+                                    </div>                    
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
             </form>
         </section>
