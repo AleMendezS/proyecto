@@ -5,6 +5,7 @@
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="/css/CajaCombo.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
@@ -24,17 +25,21 @@
         </section>
         <section th:fragment="listadoCombos" id="combos">
             <div class="container" >
+ 
                 <div class="row" sec:authorize="hasRole('ROLE_ADMIN')" >
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header"> 
+                                
                                 <h4>[[#{combo.titulo}]]</h4>
                             </div>
+ 
                             <div th:if="${combos != null and !combos.empty}">
                                 <table class="table table-stryped">
                                     <thead class="thead-dark">
+                             
                                         <tr>
-
+      
                                             <th th:text="#{combo.descripcion}">Descripcion</th>
                                             <th th:text="#{combo.precio}">Precio</th>
 
@@ -89,8 +94,25 @@
             </div>
         </div>
             </div>
+         <div class="container">
+                                                   <div class="carta">
+<div class="imgcombo">
+    <img src="/static/images/COMBO-4-1-removebg-preview.png" alt="Combo"/>
+</div>
+<div class="contenido"> 
+<h2 class="Titulo">Combo 1</h2>
+<p class="descripcion" th:each="combo, contador : ${combos}">[[${combo.descripcion}]]</p>
+<div class="comprar">
+<input class="btnmenos" type="button" name="menos" value="-">
+<label class="precio" th:each="combo, contador : ${combos}">[[${combo.precio}]]</label>
+<input class="btnmas" type="button" name="mas" value="+">
+</div>
+</div>
+</div>  
+            </div>
+
         </section>
-  
+      
         <section th:fragment="agregarCombo">
             <div id="agregarCombo" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
@@ -182,6 +204,6 @@
                 </div>
             </div>
         </section>
-
+           
     </body>
 </html>

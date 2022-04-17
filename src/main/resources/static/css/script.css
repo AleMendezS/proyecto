@@ -67,4 +67,8 @@ INSERT INTO proyecto.pelicula (nombre, genero, apto,idioma)
            ('Posesion Diabolica','Terror', '+18', 'ESP/ING/SUB'),
            ('Sonic 2','Accion', 'TP', 'ING/SUB'),
            ('Uncharted','Accion', 'TP', 'ESP/ING/SUB'),
-           ('Batman', 'Accion','+15', 'ESP/ING/SUB');*/
+           ('Batman', 'Accion','+15', 'ESP/ING/SUB');
+
+INSERT INTO proyecto.combo (nombre, descripcion, precio)
+    VALUES ('Combo 1','Palomitas', '1000');
+*/
