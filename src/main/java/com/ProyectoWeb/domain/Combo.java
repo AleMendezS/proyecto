@@ -18,14 +18,16 @@ public class Combo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCombo;
+    private String titulo;
     private String descripcion;
     private String precio;
 
     public Combo() {
     }
 
-    public Combo(String descripcion, String precio) {
+    public Combo(String titulo,String descripcion, String precio) {
 
+        this.titulo =titulo;
         this.descripcion = descripcion;
         this.precio = precio;
 
