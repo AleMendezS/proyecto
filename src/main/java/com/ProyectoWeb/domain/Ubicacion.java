@@ -25,8 +25,8 @@ public class Ubicacion implements Serializable {
     public Ubicacion() {
     }
 
-    public Ubicacion(String lugar) {
-        this.ubicacion = lugar;
+    public Ubicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
     }
     
     

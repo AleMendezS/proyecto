@@ -6,29 +6,74 @@
         <title>AutoCine</title>
     </head>
     <body>
-        
+
         <header th:replace="layout/plantilla :: header"/>
         <div class="ratio"  style="--bs-aspect-ratio: 20%;">
+
+            <iframe src="https://www.youtube.com/embed/D9AzGVmMVpk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        
+           <div class="contenedor">
              
-  <iframe src="https://www.youtube.com/embed/D9AzGVmMVpk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img  src="/images/avengers2.jpg" class="d-block w-100" height="400"  alt="pelicula">
+                </div>
+                <div class="carousel-item">
+                    <img src="/images/doctor.jpg" class="d-block w-100" height="400" alt="pelicula">
+                </div>
+                <div class="carousel-item">
+                    <img  src="/images/sonic.jpg" class="d-block w-100" height="400" alt="pelicula">
+                </div>
+            </div>
+            <button  class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"  aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+         </div>
+        
+        <style>
+            .contenedor{
+                margin-left: 100px;
+                margin-top: 30px;
+                width: 1200px;
+               
+            }
+            .ratio{
+                margin-left: 100px;
+                margin-right: 100px;
+                  margin-top: 30px;
+                  width: 1200px;
+            }
+           
+        </style>
+        
+        
+        
         <div class="container">
-            <h2 th:text="#{index.titulo}">Nuestros Articulos</h2>
-                             
+            <br>
+            <h2 th:text="#{index.titulo}">Cartelera</h2>
+            <br>
             <div class="row row-cols-6" th:if="${peliculas != null and !peliculas.empty}">
                 <div class="card" th:each="pelicula : ${peliculas}" >
-               <img src="/images/avengers.jpg" class="card-img-top" alt="pelicula">  
-            
-                    <div class="card-body">
-                        <h5 class="card-title">[[${pelicula.nombre}]]</h5>
-                                  
-                    </div>
+                    <img src="/images/avengers.jpg" class="card-img-top" alt="pelicula">  
+
+                        <div class="card-body">
+                            <h5 class="card-title">[[${pelicula.nombre}]]</h5>
+
+                        </div>
                 </div>                
             </div>
             <div th:if="${peliculas == null or peliculas.empty}"  th:text="#{pelicula.no_mostrar}">
                 No tenemos lista de peliculas que mostrar...
             </div>
         </div>
-       
+
     </body>
 </html>

@@ -18,6 +18,7 @@ public class Combo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCombo;
+    private String imagen;
     private String titulo;
     private String descripcion;
     private String precio;
@@ -25,9 +26,9 @@ public class Combo implements Serializable {
     public Combo() {
     }
 
-    public Combo(String titulo,String descripcion, String precio) {
-
-        this.titulo =titulo;
+    public Combo(String imagen, String titulo, String descripcion, String precio) {
+        this.imagen = imagen;
+        this.titulo = titulo;
         this.descripcion = descripcion;
         this.precio = precio;
 

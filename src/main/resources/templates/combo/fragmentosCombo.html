@@ -85,8 +85,10 @@
                         <div class="carta" th:each="combo : ${combos}"  >
                             <div class="imgcombo">
                                   <img src="/images/Combo.png" class="card-img-top" alt="combo">  
+                                
                             </div>
-                            <div class="contenido"> 
+                            <div class="contenido">
+                                
                                 <h8 class="Titulo">[[${combo.titulo}]]</h8>
                                 <h8 class="descripcion">[[${combo.descripcion}]]</h8>
                                 <div class="comprar">
@@ -259,6 +261,10 @@
                         <form th:action="@{/combo/guardar}" th:object="${combo}"
                               method="POST" class="was-validated">
                             <div class="modal-body">
+                                  <div class="form-group">
+                                    <label for="imagen" th:text="#{combo.imagen}">imagen</label>
+                                    <input type="text" class="form-control" name="imagen" required="true">
+                                </div>
                                 <div class="form-group">
                                     <label for="titulo" th:text="#{combo.titulo}">titulo</label>
                                     <input type="text" class="form-control" name="titulo" required="true">
