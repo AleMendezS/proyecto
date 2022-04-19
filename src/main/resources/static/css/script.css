@@ -32,43 +32,48 @@ ubicacion VARCHAR(25) NOT NULL,
 PRIMARY KEY (id_ubi))
 ENGINE = innoDB;
 
-CREATE TABLE proyecto.pelicula (
-id_pelicula INT NOT NULL AUTO_INCREMENT,
-pelicula VARCHAR(10) NOT NULL,
-genero VARCHAR (10) NOT NULL,
-idioma VARCHAR (10) NOT NULL,
-apto INT NOT NULL, 
-PRIMARY KEY (id_pelicula))
-ENGINE = innoDB;
+INSERT INTO proyecto.ubicacion (ubicacion)
+    VALUES ('Cartago');
+
 
 CREATE TABLE proyecto.combo (
 id_combo INT NOT NULL AUTO_INCREMENT,
-
+titulo VARCHAR(15) NOT NULL,
+imagen VARCHAR(15) NOT NULL,
 descripcion VARCHAR(30) NOT NULL,
 precio VARCHAR (15) NOT NULL,
 PRIMARY KEY (id_combo))
 ENGINE = innoDB;
 
 
-drop table proyecto.pelicula;
+
 CREATE TABLE proyecto.pelicula(
 id_pelicula INT NOT NULL AUTO_INCREMENT,
 nombre VARCHAR(30) NOT NULL,
 genero VARCHAR(30) NOT NULL,
 apto VARCHAR (30)  NOT NULL, 
+hora VARCHAR(30) NOT NULL,
 idioma VARCHAR (30) NOT NULL,
 PRIMARY KEY (id_pelicula))
 ENGINE = innoDB;
 
-INSERT INTO proyecto.pelicula (nombre, genero, apto,idioma)
-    VALUES ('Doctor Strange','Accion', 'TP', 'ESP/ING/SUB'),
-           ('Jujutsu Kaisen','Anime', 'TP', 'JAP/SUB'),
-           ('A ciegas','Terror', '+18', 'ESP/ING/SUB'),
-           ('Posesion Diabolica','Terror', '+18', 'ESP/ING/SUB'),
-           ('Sonic 2','Accion', 'TP', 'ING/SUB'),
-           ('Uncharted','Accion', 'TP', 'ESP/ING/SUB'),
-           ('Batman', 'Accion','+15', 'ESP/ING/SUB');
+INSERT INTO proyecto.pelicula (nombre, genero, apto,hora,idioma)
+    VALUES ('Doctor Strange','Accion', 'TP','2 pm', 'ESP/ING/SUB'),
+           ('Jujutsu Kaisen','Anime', 'TP','5 pm', 'JAP/SUB'),
+           ('A ciegas','Terror', '+18','8 pm', 'ESP/ING/SUB'),
+           ('Posesion Diabolica','Terror', '+18',' 10pm', 'ESP/ING/SUB'),
+           ('Sonic 2','Accion', 'TP','10 am', 'ING/SUB'),
+           ('Uncharted','Accion', 'TP','12 pm', 'ESP/ING/SUB'),
+           ('Batman', 'Accion','+15','2 pm', 'ESP/ING/SUB');
+           
+CREATE TABLE proyecto.notificacion(
+id_noti INT NOT NULL AUTO_INCREMENT,
+correo VARCHAR(30) NOT NULL,
+notifi VARCHAR(50) NOT NULL,
+PRIMARY KEY (id_noti))
+ENGINE = innoDB;
 
-INSERT INTO proyecto.combo (nombre, descripcion, precio)
-    VALUES ('Combo 1','Palomitas', '1000');
+INSERT INTO proyecto.notificacion (correo, notifi)
+    VALUES ('ale01@hotmail.com','tengo problemas a la hora de comprar la pelicula'),
+		   ('ale01@hotmail.com','tengo problemas a la hora de comprar la pelicula');
 */

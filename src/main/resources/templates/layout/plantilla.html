@@ -47,7 +47,7 @@
                             </li>
 
                         </ul>
-                        <ul class="navbar-nav d-inline-block" >
+                        <ul class="navbar-nav d-inline-block" sec:authorize="hasRole('ROLE_CLIENTE')">
 
                             <li class="nav-item px-2 d-inline-block">
                                 <a class="nav-menu-link nav-link" th:href="@{/notificacion/listado}"
@@ -56,9 +56,7 @@
 
                         </ul>
 
-
-
-                        <ul class="navbar-nav d-inline-block" >
+                        <ul class="navbar-nav d-inline-block" sec:authorize="hasRole('ROLE_ADMIN')" >
 
                             <a class="btn btn-primary position-relative"  href="/notificacion/listado" role="button">
                                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
