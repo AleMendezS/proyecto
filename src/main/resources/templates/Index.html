@@ -52,6 +52,68 @@
                     margin-top: 30px;
                     width: 1200px;
                 }
+                .carta{
+                     margin-right: 15px;
+                        margin-bottom: 15px;
+                    position: relative;
+                    width:200px;
+                    height:300px;
+                    background: #ccc;
+                    box-shadow: 0 15px 45px rgba(0,0,0,0.1);
+                    display: flex;
+                    overflow:hidden;
+                }
+                .carta:hover{
+                    width:400px;
+                    transition: 0.5s ease-in-out;
+                }
+                .carta .imgpeli{
+                    position:relative;
+                    min-width:200px;
+                    height:300px;
+                    background:#ccc;
+                    display: flex;
+
+                }
+                carta .imgpeli img{
+
+                }
+                .carta .contenido{
+
+                    width:192px;
+                    height:85px;
+                    background: white;
+                    padding-top: 5px;
+                    padding: 10px;
+                }
+
+                .carta .contenido h5{
+                    text-align:center;
+                    margin: 0 auto;
+                    font-size: 20px;
+                }
+
+                .carta .contenido ul {
+
+                    margin: 0px;
+                    padding:0px;
+
+                }
+                .carta .contenido ul li{
+                    display: inline-block;
+                    margin-left: 1px;
+                }
+                .caja1{
+
+                    width:60px;
+                    color:black;
+                    font-weight: bold;
+                }
+                .caja2{
+
+                    width:60px;
+                    margin-bottom:5px;
+                }
 
             </style>
 
@@ -61,16 +123,34 @@
             <br>
                 <h2 th:text="#{index.titulo}">Cartelera</h2>
                 <br>
-                    <div class="row row-cols-6" th:if="${peliculas != null and !peliculas.empty}">
-                        <div class="card" th:each="pelicula : ${peliculas}" >
-                            <img src="/images/avengers.jpg" class="card-img-top" alt="pelicula">  
+                    
+                    <div class="row row-cols-7" th:if="${peliculas != null and !peliculas.empty}">
 
-                                <div class="card-body">
-                                    <h5 class="card-title">[[${pelicula.nombre}]]</h5>
+                        <div class="carta" th:each="pelicula : ${peliculas}" >
+                            <div class="imgpeli">
+                                <img src="/images/avengers.jpg" class="card-img-top" alt="pelicula">  
+                            </div>
+                            <div class="contenido">
+                                <h5 class="card-title">[[${pelicula.nombre}]]</h5>
+                                <ul>
+                                    <li class="caja1">Horario</li>
+                                    <li class="caja1">Apto</li>
+                                    <li class="caja1">Genero</li>
 
-                                </div>
-                        </div>                
+                                </ul>
+                                <ul>
+                                <li class="caja2">[[${pelicula.hora}]]</li>
+                                <li class="caja2">[[${pelicula.apto}]]</li>
+                                <li class="caja2">[[${pelicula.genero}]]</li>
+
+                            </ul>
+                            </div>
+                        </div>  
+
                     </div> 
+
+
+
                     <br>
                         <div th:if="${peliculas == null or peliculas.empty}"  th:text="#{pelicula.no_mostrar}">
                             No tenemos lista de peliculas que mostrar...
