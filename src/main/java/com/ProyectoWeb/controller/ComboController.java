@@ -2,6 +2,7 @@ package com.ProyectoWeb.controller;
 
 import com.ProyectoWeb.domain.Combo;
 import com.ProyectoWeb.service.ComboService;
+import com.ProyectoWeb.service.NotificacionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,12 +17,17 @@ public class ComboController {
     
     @Autowired
     private ComboService comboService;
+       @Autowired
+
+    private NotificacionService notificacionService;
     @GetMapping("/combo/listado")
     public String inicio(Model model) {
         
         var combos = comboService.getCombos();
         model.addAttribute("combos", combos);
-        
+        var notificaciones = notificacionService.getNotificaciones();
+       
+        model.addAttribute("totalNotificaciones", notificaciones.size());
         
         return "/combo/listado";
     }

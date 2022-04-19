@@ -4,6 +4,7 @@ package com.ProyectoWeb.controller;
 
 import com.ProyectoWeb.domain.Empleado;
 import com.ProyectoWeb.service.EmpleadoService;
+import com.ProyectoWeb.service.NotificacionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,11 +19,17 @@ public class EmpleadoController {
     @Autowired
   
     private EmpleadoService empleadoService;
+       @Autowired
+
+    private NotificacionService notificacionService;
 
     @GetMapping("/empleado/listado")
     public String inicio(Model model) {
         var empleados = empleadoService.getEmpleados();
         model.addAttribute("empleados", empleados);
+        var notificaciones = notificacionService.getNotificaciones();
+       
+        model.addAttribute("totalNotificaciones", notificaciones.size());
         return "/empleado/listado";
     }
 

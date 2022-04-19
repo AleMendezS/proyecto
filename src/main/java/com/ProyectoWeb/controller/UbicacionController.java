@@ -2,6 +2,7 @@
 package com.ProyectoWeb.controller;
 
 import com.ProyectoWeb.domain.Ubicacion;
+import com.ProyectoWeb.service.NotificacionService;
 import com.ProyectoWeb.service.UbicacionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,17 @@ public class UbicacionController {
     @Autowired
   
     private UbicacionService ubicacionService;
+       @Autowired
+
+    private NotificacionService notificacionService;
 
     @GetMapping("/ubicacion/listado")
     public String inicio(Model model) {
         var ubicacion = ubicacionService.getUbicacion();
         model.addAttribute("ubicacion", ubicacion);
+        var notificaciones = notificacionService.getNotificaciones();
+       
+        model.addAttribute("totalNotificaciones", notificaciones.size());
         return "/ubicacion/listado";
     }
     @PostMapping("/ubicacion/guardar")

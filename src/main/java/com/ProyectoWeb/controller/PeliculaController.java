@@ -1,6 +1,7 @@
 package com.ProyectoWeb.controller;
 
 import com.ProyectoWeb.domain.Pelicula;
+import com.ProyectoWeb.service.NotificacionService;
 import com.ProyectoWeb.service.PeliculaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,17 +17,23 @@ public class PeliculaController {
     @Autowired
   
     private PeliculaService peliculaService;
+   @Autowired
 
+    private NotificacionService notificacionService;
     @GetMapping("/pelicula/listado")
     public String inicio(Model model) {
         var peliculas = peliculaService.getPeliculas();
         model.addAttribute("peliculas", peliculas);
+        var notificaciones = notificacionService.getNotificaciones();
+       
+        model.addAttribute("totalNotificaciones", notificaciones.size());
         return "/pelicula/listado";
     }
 
     
     @GetMapping("/pelicula/modifica")
     public String  nuevoPelicula (Pelicula pelicula){
+    
         return "/pelicula/modifica";
     }
     

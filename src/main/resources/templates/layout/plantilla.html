@@ -58,7 +58,9 @@
 
                         <ul class="navbar-nav d-inline-block" sec:authorize="hasRole('ROLE_ADMIN')" >
 
-                            <a class="btn btn-primary position-relative"  href="/notificacion/listado" role="button">
+                            <a class="btn btn-primary position-relative" style="margin-bottom: 10px;
+                                                                                margin-top: 10px;  
+                               " href="/notificacion/listado" role="button">
                                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                     [[${totalNotificaciones}]]
 
