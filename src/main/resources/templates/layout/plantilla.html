@@ -47,6 +47,28 @@
                             </li>
 
                         </ul>
+                        <ul class="navbar-nav d-inline-block" >
+
+                            <li class="nav-item px-2 d-inline-block">
+                                <a class="nav-menu-link nav-link" th:href="@{/notificacion/listado}"
+                                   th:text="#{plantilla.notificacion}">Notificaciones</a>
+                            </li>
+
+                        </ul>
+
+
+
+                        <ul class="navbar-nav d-inline-block" >
+
+                            <a class="btn btn-primary position-relative"  href="/notificacion/listado" role="button">
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    [[${totalNotificaciones}]]
+
+                                </span>
+                            Notificaciones</a>
+
+                        </ul>
+
                         <ul class="navbar-nav d-inline-block" sec:authorize="hasRole('ROLE_CLIENTE')">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">

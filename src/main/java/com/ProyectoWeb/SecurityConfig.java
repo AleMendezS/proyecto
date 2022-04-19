@@ -21,28 +21,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .password("{noop}1122")
                 .roles("CLIENTE");
     }
-    
-    @Override    protected void configure(HttpSecurity http) throws Exception {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/articulo/nuevo",             "/articulo/guardar",
-                             "/articulo/modificar/**",      "/articulo/eliminar/**",
-                             "/categoria/nuevo",            "/categoria/guardar",
-                             "/categoria/modificar/**",     "/categoria/eliminar/**",
-                             "/cliente/nuevo",              "/cliente/guardar",
-                             "/cliente/modificar/**",       "/cliente/eliminar/**",
-                             "/usuario/nuevo",              "/usuario/guardar",
-                             "/usuario/modificar/**",       "/usaurio/eliminar/**",
-                             "/combo/nuevo",             "/combo/guardar",
-                             "/combo/modificar/**",      "/combo/eliminar/**")
+                .antMatchers(
+                        "/categoria/nuevo", "/categoria/guardar",
+                        "/categoria/modificar/**", "/categoria/eliminar/**",
+                        "/cliente/nuevo", "/cliente/guardar",
+                        "/cliente/modificar/**", "/cliente/eliminar/**",
+                        "/usuario/nuevo", "/usuario/guardar",
+                        "/usuario/modificar/**", "/usaurio/eliminar/**",
+                        "/combo/nuevo", "/combo/guardar",
+                        "/combo/modificar/**", "/combo/eliminar/**",
+                        "/notificacion/nuevo",     
+                        "/notificacion/modificar/**",      "/notificacion/eliminar/**")
                     .hasRole("ADMIN")
-               
+                .antMatchers(
+                 "/notificacion/guardar" )
+                .hasRole("CLIENTE")
                 .antMatchers("/")
-                    .hasAnyRole("ADMIN","CLIENTE")
+                .hasAnyRole("ADMIN", "CLIENTE")
                 .and()
-                    .formLogin()
-                    .loginPage("/login")
+                .formLogin()
+                .loginPage("/login")
                 .and()
-                    .exceptionHandling().accessDeniedPage("/errores/403");
+                .exceptionHandling().accessDeniedPage("/errores/403");
     }
 }
-

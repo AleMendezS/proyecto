@@ -37,6 +37,7 @@
                                             <th th:text="#{pelicula.nombre}">Pelicula</th>
                                             <th th:text="#{pelicula.genero}">Genero</th>
                                             <th th:text="#{pelicula.apto}">Apto</th>
+                                             <th th:text="#{pelicula.hora}">Hora</th>
                                             <th th:text="#{pelicula.idioma}">Idioma</th>
                                            
                                             <th></th>
@@ -48,6 +49,7 @@
                                             <td>[[${pelicula.nombre}]]</td>
                                             <td>[[${pelicula.genero} ]]</td>
                                            <td>[[${pelicula.apto}]]</td>
+                                           <td>[[${pelicula.hora}]]</td>
                                             <td>[[${pelicula.idioma}]]</td>
                                             <td>
                                                 <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/pelicula/eliminar/}+${pelicula.idPelicula}"
@@ -97,6 +99,10 @@
                                     <label for="apto" th:text="#{pelicula.apto}">Apto</label>
                                     <input type="text" class="form-control" name="apto" required="true">
                                 </div>
+                                 <div class="form-group">
+                                    <label for="hora" th:text="#{pelicula.hora}">Hora</label>
+                                    <input type="text" class="form-control" name="hora" required="true">
+                                </div>
                                 <div class="form-group">
                                     <label for="idioma" th:text="#{pelicula.idioma}">Idioma</label>
                                     <input type="text" class="form-control" name="idioma">
@@ -138,6 +144,10 @@
                                         <div class="form-group">
                                             <label for="apto" th:text="#{pelicula.apto}">Apto </label>
                                             <input type="text"  class="form-control" name="apto" th:field="*{apto}"/>
+                                        </div>
+                                          <div class="form-group">
+                                            <label for="hora" th:text="#{pelicula.hora}">Hora </label>
+                                            <input type="text"  class="form-control" name="hora" th:field="*{hora}"/>
                                         </div>
                                         <div class="form-group">
                                             <label for="idioma" th:text="#{pelicula.idioma}">Idioma </label>

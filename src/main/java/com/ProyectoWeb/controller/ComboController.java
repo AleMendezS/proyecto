@@ -18,8 +18,11 @@ public class ComboController {
     private ComboService comboService;
     @GetMapping("/combo/listado")
     public String inicio(Model model) {
+        
         var combos = comboService.getCombos();
         model.addAttribute("combos", combos);
+        
+        
         return "/combo/listado";
     }
     

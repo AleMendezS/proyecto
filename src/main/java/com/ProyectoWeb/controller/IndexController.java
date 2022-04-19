@@ -1,6 +1,7 @@
 package com.ProyectoWeb.controller;
 
 
+import com.ProyectoWeb.service.NotificacionService;
 import com.ProyectoWeb.service.PeliculaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,10 @@ public class IndexController {
 
     @Autowired
  private PeliculaService peliculaService;
-   
+   @Autowired
+
+    private NotificacionService notificacionService;
+
     
     
     @GetMapping("/")
@@ -23,7 +27,9 @@ public class IndexController {
 
         var peliculas = peliculaService.getPeliculas();
         model.addAttribute("peliculas", peliculas);
-      
+       var notificaciones = notificacionService.getNotificaciones();
+       
+        model.addAttribute("totalNotificaciones", notificaciones.size());
        
         return "Index";
     }
