@@ -10,30 +10,30 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "pelicula")
-public class Pelicula implements Serializable {
-    
+@Table(name = "factura")
+public class Factura implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idPelicula;
+    private Long idFact;
     private String nombre;
     private String genero;
-    private String idioma;
     private String apto;
     private String hora;
+    private String idioma;
     private int precio;
 
-    public Pelicula() {
+    public Factura() {
     }
 
-    public Pelicula(String nombre, String genero, String idioma, String apto, String hora, int precio) {
+    public Factura(String nombre, String genero, String apto, String hora, String idioma, int precio) {
         this.nombre = nombre;
         this.genero = genero;
-        this.idioma = idioma;
         this.apto = apto;
         this.hora = hora;
+        this.idioma = idioma;
         this.precio = precio;
     }
 

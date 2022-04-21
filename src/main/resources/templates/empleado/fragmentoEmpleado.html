@@ -37,7 +37,7 @@
                                             <th th:text="#{empleado.cedula}">Cedula</th>
                                             <th th:text="#{empleado.nombre}">Nombre</th>
                                             <th th:text="#{empleado.pasword}">Contraseña</th>
-                                           
+
                                             <th></th>
                                             <th></th>
                                         </tr>
@@ -46,7 +46,7 @@
                                         <tr th:each="empleado, contador : ${empleados}">
                                             <td>[[${empleado.cedula}]]</td>
                                             <td>[[${empleado.nombre} + ' ' + ${empleado.apellidos}]]</td>
-                                           <td>[[${empleado.pasword}]]</td>
+                                            <td>[[${empleado.pasword}]]</td>
                                             <td>
                                                 <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/empleado/eliminar/}+${empleado.idEmpleado}"
                                                    class="btn btn-danger">
@@ -68,7 +68,7 @@
                             </div>
                         </div>
                     </div>
-                  
+
                 </div>
             </div>
         </section>
@@ -99,7 +99,7 @@
                                     <label for="pasword" th:text="#{empleado.pasword}">Contraseña</label>
                                     <input type="pasword" class="form-control" name="pasword">
                                 </div>
-                               
+
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
@@ -141,40 +141,42 @@
                                             <label for="pasword" th:text="#{empleado.pasword}">Contraseña </label>
                                             <input type="text"  class="form-control" name="pasword" th:field="*{pasword}"/>
                                         </div>
-                                       
-                                        </div>                    
-                                    </div>
+
+                                    </div>                    
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                </div>
+
             </form>
         </section>
-        <section th:fragment="botonesEditar">
-            <div id="actions" class="py-4 mb-4 bg-light">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <a th:href="@{/empleado/listado}" class="btn btn-ligth btn-block">
-                                <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="submit" class="btn btn-success btn-block">
-                                <i class="fas fa-check"></i> [[#{accion.guardar}]]
-                            </button>
-                        </div>
-                        <div class="col-md-3">
-                            <a th:href="@{/empleado/eliminar/}+${empleado.idEmpleado}"
-                               class="btn btn-danger btn-block">
-                                <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
-                            </a>
-                        </div>
+    </section>
+    <section th:fragment="botonesEditar">
+        <div id="actions" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <a th:href="@{/empleado/listado}" class="btn btn-ligth btn-block">
+                            <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-success btn-block">
+                            <i class="fas fa-check"></i> [[#{accion.guardar}]]
+                        </button>
+                    </div>
+                    <div class="col-md-3">
+                        <a th:href="@{/empleado/eliminar/}+${empleado.idEmpleado}"
+                           class="btn btn-danger btn-block">
+                            <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
+                        </a>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-    </body>
+</body>
 </html>

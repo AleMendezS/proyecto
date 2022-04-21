@@ -23,7 +23,7 @@
             </div>
         </section>
         <section th:fragment="listadoPeliculas" id="peliculas">
-            <div class="container">
+            <div class="container" sec:authorize="hasRole('ROLE_ADMIN')">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
@@ -39,7 +39,7 @@
                                             <th th:text="#{pelicula.apto}">Apto</th>
                                              <th th:text="#{pelicula.hora}">Hora</th>
                                             <th th:text="#{pelicula.idioma}">Idioma</th>
-                                           
+                                           <th th:text="#{pelicula.precio}">Precio</th>
                                             <th></th>
                                             <th></th>
                                         </tr>
@@ -51,6 +51,7 @@
                                            <td>[[${pelicula.apto}]]</td>
                                            <td>[[${pelicula.hora}]]</td>
                                             <td>[[${pelicula.idioma}]]</td>
+                                            <td>[[${pelicula.precio}]]</td>
                                             <td>
                                                 <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/pelicula/eliminar/}+${pelicula.idPelicula}"
                                                    class="btn btn-danger">
@@ -74,6 +75,128 @@
                     </div>
                   
                 </div>
+            </div>
+            
+             <style sec:authorize="hasRole('ROLE_CLIENTE')">
+                .container{
+                margin-left: 80px;
+                }
+                .box{
+                    width: 1200px;
+                }
+                .contenedor{
+                 
+                    margin-top: 30px;
+                    width: 1200px;
+
+                }
+                .ratio{
+
+                    margin-right: 100px;
+                    margin-bottom: 30px;
+                    margin-top: 30px;
+                    width: 1200px;
+                }
+                .carta{
+                    margin-right: 15px;
+                    margin-bottom: 15px;
+                    position: relative;
+                    width:200px;
+                    height:300px;
+                    background: #ccc;
+                    box-shadow: 0 15px 45px rgba(0,0,0,0.1);
+                    display: flex;
+                    overflow:hidden;
+                    padding: 0px;
+                }
+                .carta:hover{
+                    width:414px;
+                    transition: 0.5s ease-in-out;
+
+                }
+                .carta .imgpeli{
+                    position:relative;
+                    min-width:200px;
+                    height:300px;
+                    background:#ccc;
+                    display: flex;
+
+                }
+                carta .imgpeli img{
+
+                }
+                .carta .contenido{
+
+                    width:212px;
+                    height:300px;
+                    background: white;
+                    padding-top: 5px;
+                    padding: 10px;
+                }
+
+                .carta .contenido h5{
+                    text-align:center;
+                    margin: 0 auto;
+                    font-size: 20px;
+                }
+
+                .carta .contenido ul {
+
+                    margin: 0px;
+                    padding:0px;
+
+                }
+                .carta .contenido ul li{
+                    display: inline-block;
+                    margin-left: 1px;
+                }
+                .caja1{
+
+                    width:60px;
+                    color:black;
+                    font-weight: bold;
+                }
+                .caja2{
+
+                    width:60px;
+                    margin-bottom:5px;
+                }
+
+            </style>
+
+
+
+            <div class="container" sec:authorize="hasRole('ROLE_CLIENTE')">
+          
+                <h2 th:text="#{index.titulo}">Cartelera</h2>
+                <br>
+                    <div class="box">
+
+                        <div class="row row-cols-6" th:if="${peliculas != null and !peliculas.empty}">
+
+                            <div class="carta" th:each="pelicula : ${peliculas}" >
+                                <div class="imgpeli">
+                                    <img src="/images/avengers.jpg" class="card-img-top" alt="pelicula">  
+                                </div>
+                                <div class="contenido">
+                                    <h5 class="card-title">[[${pelicula.nombre}]]</h5>
+                                    <ul>
+                                        <li class="caja1">Horario</li>
+                                        <li class="caja1">Apto</li>
+                                        <li class="caja1">Genero</li>
+
+                                    </ul>
+                                    <ul>
+                                        <li class="caja2">[[${pelicula.hora}]]</li>
+                                        <li class="caja2">[[${pelicula.apto}]]</li>
+                                        <li class="caja2">[[${pelicula.genero}]]</li>
+
+                                    </ul>
+                                </div>
+                            </div>  
+
+                        </div> 
+                    </div>
             </div>
         </section>
         <section th:fragment="agregarPelicula">
@@ -105,7 +228,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="idioma" th:text="#{pelicula.idioma}">Idioma</label>
-                                    <input type="text" class="form-control" name="idioma">
+                                    <input type="text" class="form-control" name="idioma" required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="precio" th:text="#{pelicula.precio}">Precio</label>
+                                    <input type="number" class="form-control" name="precio" required="true">
                                 </div>
                                
                             </div>
@@ -153,7 +280,10 @@
                                             <label for="idioma" th:text="#{pelicula.idioma}">Idioma </label>
                                             <input type="text"  class="form-control" name="idioma" th:field="*{idioma}"/>
                                         </div>
-                                       
+                                        <div class="form-group">
+                                            <label for="precio" th:text="#{pelicula.precio}">Precio </label>
+                                            <input type="number"  class="form-control" name="precio" th:field="*{precio}"/>
+                                        </div>
                                         </div>                    
                                     </div>
                                 </div>

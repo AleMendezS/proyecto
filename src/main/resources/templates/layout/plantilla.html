@@ -12,29 +12,41 @@
         <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     </head>
     <body>
-        <header th:fragment="header" class="header">
-            <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
-                <div class="container">
-                    <a th:href="@{/}" class="navbar-brand">AutoCine</a>
+        <header th:fragment="header" class="header " >
+            <nav class="navbar navbar-expand-sm navbar-dark bg-danger p-0 ">
+                <div class="container  ">
+                    <a th:href="@{/}" class="navbar-brand " style="float: right;">AutoCine</a>
                     <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="d-inline-block " id="navbarCollapse">
-                        <ul class="navbar-nav d-inline-block" sec:authorize="hasRole('ROLE_ADMIN')">
-                            <li class="nav-item px-2 d-inline-block">
-                                <a class="nav-menu-link nav-link" th:href="@{/cliente/listado}"
+
+                    <div class="d-inline-block "  id="navbarCollapse">
+                        <ul class="navbar-nav d-inline-block "  sec:authorize="hasRole('ROLE_ADMIN')">
+                            <li class="nav-item px-2 d-inline-block" style="margin-left: 10px;">
+                                <a class="nav-menu-link nav-link" style="color:white;" th:href="@{/cliente/listado}"
                                    th:text="#{plantilla.clientes}">Clientes</a>
                             </li>
                             <li class="nav-item px-2 d-inline-block">
-                                <a class="nav-menu-link nav-link" th:href="@{/empleado/listado}"
+                                <a class="nav-menu-link nav-link" style="color:white;" th:href="@{/empleado/listado}"
                                    th:text="#{plantilla.empleado}">Empleados</a>
                             </li>
                             <li class="nav-item px-2 d-inline-block">
-                                <a class="nav-menu-link nav-link" th:href="@{/pelicula/listado}"
+                                <a class="nav-menu-link nav-link" style="color:white;" th:href="@{/pelicula/listado}"
                                    th:text="#{plantilla.pelicula}">Peliculas</a>
                             </li>
                             <li class="nav-item px-2 d-inline-block">
-                                <a class="nav-menu-link nav-link" th:href="@{/combo/listado}"
+                                <a class="nav-menu-link nav-link" style="color:white;" th:href="@{/combo/listado}"
+                                   th:text="#{plantilla.combo}">Combos</a>
+                            </li>
+                            <li class="nav-item px-2 d-inline-block">
+                                <a class="nav-menu-link nav-link" style="color:white;" th:href="@{/factura/listado}"
+                                 >Factura</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav d-inline-block" sec:authorize="hasRole('ROLE_CLIENTE')">
+
+                            <li class="nav-item px-2 d-inline-block">
+                                <a class="nav-menu-link nav-link" style="color:white;" th:href="@{/combo/listado}"
                                    th:text="#{plantilla.combo}">Combos</a>
                             </li>
 
@@ -42,26 +54,31 @@
                         <ul class="navbar-nav d-inline-block" sec:authorize="hasRole('ROLE_CLIENTE')">
 
                             <li class="nav-item px-2 d-inline-block">
-                                <a class="nav-menu-link nav-link" th:href="@{/combo/listado}"
-                                   th:text="#{plantilla.combo}">Combos</a>
+                                <a class="nav-menu-link nav-link" style="color:white;" th:href="@{/pelicula/listado}"
+                                   th:text="#{plantilla.pelicula}">Peliculas</a>
                             </li>
 
                         </ul>
                         <ul class="navbar-nav d-inline-block" sec:authorize="hasRole('ROLE_CLIENTE')">
 
                             <li class="nav-item px-2 d-inline-block">
-                                <a class="nav-menu-link nav-link" th:href="@{/notificacion/listado}"
-                                   th:text="#{plantilla.notificacion}">Notificaciones</a>
+                                <a class="nav-menu-link nav-link" style="color:white;
+                                   margin-right: 10px;  "
+                                   th:href="@{/notificacion/listado}"
+                                   th:text="#{plantilla.notificacion}">Contactenos</a>
                             </li>
 
                         </ul>
 
                         <ul class="navbar-nav d-inline-block" sec:authorize="hasRole('ROLE_ADMIN')" >
 
-                            <a class="btn btn-primary position-relative" style="margin-bottom: 10px;
+                            <a class="btn  position-relative  " style="margin-bottom: 10px;
+                               border-radius:20px;
                                margin-top: 10px;
+                               background-color: #4CAAF4 ;
+                               color: white;
                                " href="/notificacion/listado" role="button">
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
                                     [[${totalNotificaciones}]]
 
                                 </span>
@@ -90,16 +107,18 @@
 
                         <ul sec:authorize="isAuthenticated()" class="navbar-nav ml-auto d-inline-block">
 
-                            <li class="nav-item d-inline-block">
+                            <li class="nav-item d-inline-block" >
                                 <form method="POST" th:action="@{/logout}">
-                                    <a href="#" onclick="this.parentNode.submit();" class="nav-link">
-                                        <i class="fas fa-arrow-right-from-bracket"></i> [[#{plantilla.logout}]]
+                                    <a href="#" style="color:white;
+                                       margin-left: 50px;  " onclick="this.parentNode.submit();" class="nav-link">
+                                        <i class="fas fa-arrow-left"></i>
                                     </a>
                                 </form>
                             </li>
                         </ul>
-                    </div>                    
-                </div>
+                    </div>   
+                </div> 
+
             </nav>
         </header>
         <footer class="text-center text-white "  style="background-color: #E2E2E2;">
@@ -111,7 +130,7 @@
                     <a
                         class="btn btn-primary btn-floating m-1"
                         style="background-color: #3b5998;"
-                        href="#!"
+                        href="https://www.facebook.com/cinemarkcr"
                         role="button"
                         ><i class="fab fa-facebook-f"></i
                         ></a>
@@ -138,7 +157,7 @@
                     <a
                         class="btn btn-primary btn-floating m-1"
                         style="background-color: #ac2bac;"
-                        href="#!"
+                        href="https://www.instagram.com/cinemark_ca/"
                         role="button"
                         ><i class="fab fa-instagram"></i
                         ></a>
@@ -147,10 +166,10 @@
                     <a
                         class="btn btn-primary btn-floating m-1"
                         style="background-color: #0082ca;"
-                        href="#!"
+                        href="/notificacion/listado"
                         role="button"
-                        ><i class="fab fa-linkedin-in"></i
-                        ></a>
+                        ><i class="fas fa-comments"></i>
+                    </a>
                     <!-- Github -->
                     <a
                         class="btn btn-primary btn-floating m-1"

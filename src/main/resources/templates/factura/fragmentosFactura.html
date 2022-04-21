@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <section th:fragment="listadoFacturas" id="facturas">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{factura.titulo}]]</h4>
+                            </div>
+                            <div th:if="${facturas != null and !facturas.empty}">
+                                <table class="table table-stryped">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th th:text="#{factura.nombre}">Pelicula</th>
+                                            <th th:text="#{factura.genero}">Genero</th>
+                                            <th th:text="#{factura.apto}">Apto</th>
+                                            <th th:text="#{factura.hora}">Hora</th>
+                                            <th th:text="#{factura.idioma}">Idioma</th>
+                                            <th th:text="#{factura.precio}">Precio</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="factura, contador : ${facturas}">
+                                            <td>[[${factura.nombre}]]</td>
+                                            <td>[[${factura.genero} ]]</td>
+                                            <td>[[${factura.apto}]]</td>
+                                            <td>[[${factura.hora}]]</td>
+                                            <td>[[${factura.idioma} ]]</td>
+                                            <td>[[${factura.precio}]]</td>
+                                            <td>
+                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/factura/eliminar/}+${factura.idFact}"
+                                                   class="btn btn-danger">
+                                                    <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/factura/modificar/}+${factura.idFact}"
+                                                   class="btn btn-primary">
+                                                    <i class="fas fa-pen"></i> [[#{accion.actualizar}]]
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center p-2" th:if="${facturas == null or facturas.empty}">
+                                <span th:text="#{factura.no_mostrar}">Lista vacía</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <section th:fragment="editarFactura">            
+            <form method="POST"
+                  th:action="@{/factura/guardar}"
+                  th:object="${factura}"
+                  class="was-validated">
+
+
+                <div id="details">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>[[#{accion.actualizar}]]</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="nombre" th:text="#{pelicula.nombre}">Pelicula </label>
+                                            <input type="text" class="form-control" name="nombre" th:field="*{nombre}"  readonly/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="genero" th:text="#{pelicula.genero}">Genero </label>
+                                            <input type="text"  class="form-control" name="genero" th:field="*{genero}"  readonly/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="apto" th:text="#{pelicula.apto}">Apto </label>
+                                            <input type="text"  class="form-control" name="apto" th:field="*{apto}"  readonly/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="hora" th:text="#{pelicula.hora}">Hora </label>
+                                            <input type="text"  class="form-control" name="hora" th:field="*{hora}"  readonly/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="idioma" th:text="#{pelicula.idioma}">Idioma </label>
+                                            <input type="text"  class="form-control" name="idioma" th:field="*{idioma}"  readonly/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="precio" th:text="#{pelicula.precio}">Precio </label>
+                                            <input type="number"  class="form-control" name="precio" th:field="*{precio}"  readonly/>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-primary" type="submit" th:text="#{accion.comprar}">Comprar</button>
+                                        </div>
+                                    </div>                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </form>
+        </section>
+
+
+    </body>
+</html>

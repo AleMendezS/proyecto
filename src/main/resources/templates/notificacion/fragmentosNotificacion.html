@@ -56,7 +56,11 @@
          
         </section>
         <section th:fragment="agregarNotificacion" sec:authorize="hasRole('ROLE_CLIENTE')" >
-  <div class="container">
+          <div class="container">
+              <br>
+              <br>
+              <h2 th:text="#{notificacion.titulo}">Escribenos</h2>
+              <br>
             <form th:action="@{/notificacion/guardar}" th:object="${notificacion}"
                   method="POST" class="was-validated">
                
@@ -73,7 +77,7 @@
 
             
                 <div class="modal-footer">
-                    <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
+                    <button class="btn btn-primary" type="submit" th:text="#{accion.enviar}">Enviar</button>
                 </div>
               
             </form>

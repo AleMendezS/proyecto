@@ -41,7 +41,7 @@ public class ClienteController {
     @PostMapping("/cliente/guardar")
     public String guardarCliente (Cliente cliente){
         clienteService.save(cliente);
-         return "redirect:/cliente/listado";
+         return "Index";
     }
     @PostMapping("/cliente/save")
     public String saveCliente (Cliente cliente){

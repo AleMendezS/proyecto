@@ -21,12 +21,12 @@ public class Combo implements Serializable {
     private String imagen;
     private String titulo;
     private String descripcion;
-    private String precio;
+    private int precio;
 
     public Combo() {
     }
 
-    public Combo(String imagen, String titulo, String descripcion, String precio) {
+    public Combo(String imagen, String titulo, String descripcion, int precio) {
         this.imagen = imagen;
         this.titulo = titulo;
         this.descripcion = descripcion;

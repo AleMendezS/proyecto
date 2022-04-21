@@ -93,20 +93,21 @@
             }
             #boton [name="guardar"]:hover{
                 color:#ffffff;
+                border-radius:20px;
                 background:#db0223;
                 box-shadow: 0px 0px 10px #b20d34,
                     0px 0px 40px #b20d34 ,0px 0px 80px #b20d34;
                 cursor:pointer;
             }
         </style>
-        <div id="login">
+        <div id="login" class="rounded-3">
             <form method="POST" th:action="@{/login}">
 
                 <label for="username">[[#{login.username}]]</label>
-                <input type="text" name="username" id="username"/>
+                <input type="text" name="username" id="username" placeholder="Usuario"/>
 
                 <label for="password">[[#{login.password}]]</label>
-                <input type="password" name="password" id="password"/>
+                <input type="password" name="password" id="password"  placeholder="Contraseña"/>
 
                 <br>
                 <div id="boton">

@@ -9,35 +9,46 @@
     </head>
     <body>
 
-        <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3" sec:authorize="hasRole('ROLE_ADMIN')">   
-                        <button 
-                            type="button" 
-                            class="btn btn-primary btn-block" 
-                            data-bs-toggle="modal" 
-                            data-bs-target="#agregarCombo">
-                            <i class="fas fa-plus"></i> [[#{accion.agregar}]]
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
+
         <section th:fragment="listadoCombos" id="combos">
+            <br>
+            <br>
             <div class="container" >
 
                 <div class="row" sec:authorize="hasRole('ROLE_ADMIN')" >
                     <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header"> 
+                        <div class="card" style="background-color:#C9CACA;">
+                            <div class="card-header d-inline-block"> 
 
-                                <h4>[[#{combo.titulo}]]</h4>
+                                <table class="table table-stryped">
+
+                                    <tbody>
+                                        <tr >
+
+
+                                            <td>
+                                                <h4>[[#{combo.titulo}]]</h4>
+                                            </td>
+                                            <td>
+                                                <div class="col-md-3" style=" float: right;"  sec:authorize="hasRole('ROLE_ADMIN')">   
+                                                    <button type="button" 
+                                                            class="btn btn-primary btn-block" 
+                                                            data-bs-toggle="modal" 
+                                                            data-bs-target="#agregarCombo">
+                                                        <i class="fas fa-plus"></i> 
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
                             </div>
 
                             <div th:if="${combos != null and !combos.empty}" sec:authorize="hasRole('ROLE_ADMIN')">
                                 <table class="table table-stryped">
-                                    <thead class="thead-dark">
+                                    <thead   style="background-color:#C9CACA;">
 
                                         <tr>
 
@@ -46,6 +57,7 @@
 
                                             <th></th>
                                             <th></th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -53,16 +65,17 @@
 
                                             <td>[[${combo.descripcion}]]</td>
                                             <td>[[${combo.precio}]]</td>
+
                                             <td>
                                                 <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/combo/eliminar/}+${combo.idCombo}"
                                                    class="btn btn-danger">
-                                                    <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
+                                                    <i class="fas fa-trash"></i> 
                                                 </a>
                                             </td>
                                             <td>
                                                 <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/combo/modificar/}+${combo.idCombo}"
                                                    class="btn btn-primary">
-                                                    <i class="fas fa-pen"></i> [[#{accion.actualizar}]]
+                                                    <i class="fas fa-pen"></i> 
                                                 </a>
                                             </td>
                                         </tr>
@@ -84,11 +97,11 @@
 
                         <div class="carta" th:each="combo : ${combos}"  >
                             <div class="imgcombo">
-                                  <img src="/images/Combo.png" class="card-img-top" alt="combo">  
-                                
+                                <img src="/images/Combo.png" class="card-img-top" alt="combo">  
+
                             </div>
                             <div class="contenido">
-                                
+
                                 <h8 class="Titulo">[[${combo.titulo}]]</h8>
                                 <h8 class="descripcion">[[${combo.descripcion}]]</h8>
                                 <div class="comprar">
@@ -118,7 +131,7 @@
                         height:400px;
                         border-radius:20px;
                         overflow:hidden
-                        
+
                     }
                     .container .carta:before{
                         content:' ';
@@ -261,7 +274,7 @@
                         <form th:action="@{/combo/guardar}" th:object="${combo}"
                               method="POST" class="was-validated">
                             <div class="modal-body">
-                                  <div class="form-group">
+                                <div class="form-group">
                                     <label for="imagen" th:text="#{combo.imagen}">imagen</label>
                                     <input type="text" class="form-control" name="imagen" required="true">
                                 </div>
