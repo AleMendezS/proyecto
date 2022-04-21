@@ -41,7 +41,7 @@ id_combo INT NOT NULL AUTO_INCREMENT,
 titulo VARCHAR(15) NOT NULL,
 imagen VARCHAR(15) NOT NULL,
 descripcion VARCHAR(30) NOT NULL,
-precio VARCHAR (15) NOT NULL,
+precio INT  NOT NULL,
 PRIMARY KEY (id_combo))
 ENGINE = innoDB;
 
@@ -54,17 +54,18 @@ genero VARCHAR(30) NOT NULL,
 apto VARCHAR (30)  NOT NULL, 
 hora VARCHAR(30) NOT NULL,
 idioma VARCHAR (30) NOT NULL,
+precio INT NOT NULL,
 PRIMARY KEY (id_pelicula))
 ENGINE = innoDB;
 
-INSERT INTO proyecto.pelicula (nombre, genero, apto,hora,idioma)
-    VALUES ('Doctor Strange','Accion', 'TP','2 pm', 'ESP/ING/SUB'),
-           ('Jujutsu Kaisen','Anime', 'TP','5 pm', 'JAP/SUB'),
-           ('A ciegas','Terror', '+18','8 pm', 'ESP/ING/SUB'),
-           ('Posesion Diabolica','Terror', '+18',' 10pm', 'ESP/ING/SUB'),
-           ('Sonic 2','Accion', 'TP','10 am', 'ING/SUB'),
-           ('Uncharted','Accion', 'TP','12 pm', 'ESP/ING/SUB'),
-           ('Batman', 'Accion','+15','2 pm', 'ESP/ING/SUB');
+INSERT INTO proyecto.pelicula (nombre, genero, apto,hora,idioma,precio)
+    VALUES ('Doctor Strange','Accion', 'TP','2 pm', 'ESP/ING/SUB',5000),
+           ('Jujutsu Kaisen','Anime', 'TP','5 pm', 'JAP/SUB',5000),
+           ('A ciegas','Terror', '+18','8 pm', 'ESP/ING/SUB',5000),
+           ('Posesion Diabolica','Terror', '+18',' 10pm', 'ESP/ING/SUB',5000),
+           ('Sonic 2','Accion', 'TP','10 am', 'ING/SUB',5000),
+           ('Uncharted','Accion', 'TP','12 pm', 'ESP/ING/SUB',5000),
+           ('Batman', 'Accion','+15','2 pm', 'ESP/ING/SUB',5000);
            
 CREATE TABLE proyecto.notificacion(
 id_noti INT NOT NULL AUTO_INCREMENT,
@@ -76,4 +77,16 @@ ENGINE = innoDB;
 INSERT INTO proyecto.notificacion (correo, notifi)
     VALUES ('ale01@hotmail.com','tengo problemas a la hora de comprar la pelicula'),
 		   ('ale01@hotmail.com','tengo problemas a la hora de comprar la pelicula');
+
+CREATE TABLE proyecto.factura(
+id_fact INT NOT NULL AUTO_INCREMENT,
+nombre VARCHAR(30) NOT NULL,
+genero VARCHAR(30) NOT NULL,
+apto VARCHAR (30)  NOT NULL, 
+hora VARCHAR(30) NOT NULL,
+idioma VARCHAR (30) NOT NULL,
+precio INT NOT NULL,
+
+PRIMARY KEY (id_fact))
+ENGINE = innoDB;
 */
