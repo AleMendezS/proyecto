@@ -9,14 +9,14 @@
 
         <header th:replace="layout/plantilla :: header"/>
         <div class="container">
-            <div class="ratio"  style="--bs-aspect-ratio: 20%;">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/KREBGtEeW9U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="ratio"  style="--bs-aspect-ratio: 20%; " >
+                <iframe style="border-radius:20px;" width="560" height="315" src="https://www.youtube.com/embed/KREBGtEeW9U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
 
-            <div class="contenedor">
+            <div class="contenedor"  >
 
-                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" >
+                    <div class="carousel-inner" style="border-radius:20px;">
                         <div class="carousel-item active">
                             <img  src="/images/avengers2.jpg" class="d-block w-100" height="400"  alt="pelicula">
                         </div>
@@ -25,6 +25,9 @@
                         </div>
                         <div class="carousel-item">
                             <img  src="/images/sonic.jpg" class="d-block w-100" height="400" alt="pelicula">
+                        </div>
+                        <div class="carousel-item">
+                            <img  src="/images/spiderman2.png" class="d-block w-100" height="400" alt="pelicula">
                         </div>
                     </div>
                     <button  class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -41,9 +44,11 @@
             <style>
                 .container{
                     margin-left: 80px;
+
                 }
                 .box{
-                    width: 1200px;
+                     margin-left: 50px;
+                    width: 1260px;
                 }
                 .contenedor{
 
@@ -64,7 +69,7 @@
                     position: relative;
                     width:200px;
                     height:300px;
-                    
+
                     box-shadow: 0 15px 45px rgba(0,0,0,0.1);
                     display: flex;
                     overflow:hidden;
@@ -82,7 +87,7 @@
                     position:relative;
                     min-width:200px;
                     height:300px;
-                    
+
                     display: flex;
 
                 }
@@ -136,34 +141,39 @@
                 <br>
                     <div class="box">
 
-                        <div class="row row-cols-6" th:if="${peliculas != null and !peliculas.empty}">
+                        <div class="row row-cols-3" th:if="${peliculas != null and !peliculas.empty}">
 
-                            <div class="carta" th:each="pelicula : ${peliculas}" >
-                                <div class="imgpeli">
-                                    <img src="/images/avengers.jpg" style="  border-radius:20px;" alt="pelicula">  
-                                </div>
-                                <div class="contenido">
-                                    <h5 class="card-title">[[${pelicula.nombre}]]</h5>
-                                    <ul>
-                                        <li class="caja1">Horario</li>
-                                        <li class="caja1">Apto</li>
-                                        <li class="caja1">Genero</li>
+                             <div class="carta" th:each="pelicula : ${peliculas}" >
+                                <div class="imgpeli">  
+                                <img th:src="@{${'/images/' + pelicula.imagen}}" style="  border-radius:20px;" alt="pelicula"/>
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                            <div class="contenido">
+                                <h5 class="card-title">[[${pelicula.nombre}]]</h5>
+                                <ul>
+                                    <li class="caja1">Horario</li>
+                                    <li class="caja1">Apto</li>
+                                    <li class="caja1">Genero</li>
 
-                                    </ul>
-                                    <ul>
-                                        <li class="caja2">[[${pelicula.hora}]]</li>
-                                        <li class="caja2">[[${pelicula.apto}]]</li>
-                                        <li class="caja2">[[${pelicula.genero}]]</li>
-                                        <a sec:authorize="hasRole('ROLE_CLIENTE')" th:href="@{/factura/modificar/}+${pelicula.idPelicula}"
-                                           class="btn btn-primary">
-                                            <i class="fas fa-pen"></i> [[#{accion.actualizar}]]
-                                        </a>
-                                    </ul>
-                                </div>
-                                
-                            </div>  
+                                </ul>
+                                <ul>
+                                    <li class="caja2">[[${pelicula.hora}]]</li>
+                                    <li class="caja2">[[${pelicula.apto}]]</li>
+                                    <li class="caja2">[[${pelicula.genero}]]</li>
+                                    <a sec:authorize="hasRole('ROLE_CLIENTE')" th:href="@{/factura/modificar/}+${pelicula.idPelicula}"
+                                       class="btn btn-primary">
+                                        <i class="fas fa-pen"></i> [[#{accion.actualizar}]]
+                                    </a>
+                                </ul>
+                            </div>
 
-                        </div> 
+                        </div>  
+
+                    </div> 
                     </div>
 
 
@@ -175,7 +185,8 @@
                         <h2 th:text="#{index.titulo2}" style="font-family:Fabrikat Kompakt Regular;">PREVENTA / PROXIMOS ESTRENOS</h2>
 
                         <div class="ratio"  style="--bs-aspect-ratio: 20%;">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/tgB1wUcmbbw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe style="border-radius:20px;" width="560" height="315" src="https://www.youtube.com/embed/vKKu-Wt7O2Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                           
 
                         </div>
                         </div>

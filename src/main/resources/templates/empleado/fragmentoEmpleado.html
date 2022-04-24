@@ -7,29 +7,43 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3" sec:authorize="hasRole('ROLE_ADMIN')">   
-                        <button 
-                            type="button" 
-                            class="btn btn-primary btn-block" 
-                            data-bs-toggle="modal" 
-                            data-bs-target="#agregarEmpleado">
-                            <i class="fas fa-plus"></i> [[#{accion.agregar}]]
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <br>
+        <br>
         <section th:fragment="listadoEmpleados" id="empleados">
+            <br>
+            <br>
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>[[#{empleado.titulo}]]</h4>
-                            </div>
+                        <div class="card" style="background-color:#C9CACA;">
+
+
+                            <table class="table table-stryped">
+                                <tbody>
+                                    <tr>
+                                        <td>
+
+                                            <h4>[[#{empleado.titulo}]]</h4>
+                                        </td>
+                                        <td>
+                                            <div class="col-md-0" style=" float: right;
+                                                 margin-left: 550px;" sec:authorize="hasRole('ROLE_ADMIN')">   
+                                                <button 
+                                                    type="button" 
+                                                    class="btn btn-primary btn-block" 
+                                                    data-bs-toggle="modal" 
+                                                    data-bs-target="#agregarEmpleado">
+                                                    <i class="fas fa-plus"></i> 
+                                                </button>
+                                            </div>
+                                        </td>
+                            </table>
+
+
+
+
+
+
                             <div th:if="${empleados != null and !empleados.empty}">
                                 <table class="table table-stryped">
                                     <thead class="thead-dark">
@@ -76,7 +90,7 @@
             <div id="agregarEmpleado" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
-                        <div class="modal-header bg-info text-white">
+                        <div class="modal-header bg-danger text-white">
                             <h5 class="modal-title" th:text="#{accion.agregar}">Agregar Empleado</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div> 

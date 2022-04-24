@@ -26,7 +26,6 @@ public class ComboController {
         var combos = comboService.getCombos();
         model.addAttribute("combos", combos);
         var notificaciones = notificacionService.getNotificaciones();
-       
         model.addAttribute("totalNotificaciones", notificaciones.size());
         
         return "/combo/listado";

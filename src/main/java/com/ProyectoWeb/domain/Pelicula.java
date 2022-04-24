@@ -22,20 +22,23 @@ public class Pelicula implements Serializable {
     private String genero;
     private String idioma;
     private String apto;
+     private String imagen;
     private String hora;
     private int precio;
 
     public Pelicula() {
     }
 
-    public Pelicula(String nombre, String genero, String idioma, String apto, String hora, int precio) {
+    public Pelicula(String nombre, String genero, String idioma, String apto, String imagen, String hora, int precio) {
         this.nombre = nombre;
         this.genero = genero;
         this.idioma = idioma;
         this.apto = apto;
+        this.imagen = imagen;
         this.hora = hora;
         this.precio = precio;
     }
 
+    
     
 }

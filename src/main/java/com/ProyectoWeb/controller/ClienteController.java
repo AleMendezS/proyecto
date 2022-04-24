@@ -22,6 +22,7 @@ public class ClienteController {
    @Autowired
 
     private NotificacionService notificacionService;
+   
     @GetMapping("/cliente/listado")
     public String inicio(Model model) {
         var clientes = clienteService.getClientes();
@@ -41,7 +42,7 @@ public class ClienteController {
     @PostMapping("/cliente/guardar")
     public String guardarCliente (Cliente cliente){
         clienteService.save(cliente);
-         return "Index";
+         return "redirect:/cliente/listado";
     }
     @PostMapping("/cliente/save")
     public String saveCliente (Cliente cliente){

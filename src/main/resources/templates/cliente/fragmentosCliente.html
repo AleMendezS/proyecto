@@ -7,29 +7,36 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3" sec:authorize="hasRole('ROLE_ADMIN')">   
-                        <button 
-                            type="button" 
-                            class="btn btn-primary btn-block" 
-                            data-bs-toggle="modal" 
-                            data-bs-target="#agregarCliente">
-                            <i class="fas fa-plus"></i> [[#{accion.agregar}]]
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
+      
         <section th:fragment="listadoClientes" id="clientes">
+             <br>
+            <br>
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>[[#{cliente.titulo}]]</h4>
-                            </div>
+                        <div class="card" style="background-color:#C9CACA;">
+
+                            <table class="table table-stryped">
+                                <tbody>
+                                    <tr>
+                                        <td>
+
+                                            <h4>[[#{cliente.titulo}]]</h4>
+                                        </td>
+                                        <td>
+                                            <div class="col-md-0" style=" float: right;
+                                                     margin-left: 550px;" sec:authorize="hasRole('ROLE_ADMIN')">   
+                                                <button 
+                                                    type="button" 
+                                                    class="btn btn-primary btn-block" 
+                                                    data-bs-toggle="modal" 
+                                                    data-bs-target="#agregarCliente">
+                                                    <i class="fas fa-plus"></i> 
+                                                </button>
+                                            </div>
+                                        </td>
+                            </table>
+
                             <div th:if="${clientes != null and !clientes.empty}">
                                 <table class="table table-stryped">
                                     <thead class="thead-dark">
@@ -37,7 +44,7 @@
                                             <th th:text="#{cliente.cedula}">Cedula</th>
                                             <th th:text="#{cliente.nombre}">Nombre</th>
                                             <th th:text="#{cliente.pasword}">Contraseña</th>
-                                           
+
                                             <th></th>
                                             <th></th>
                                         </tr>
@@ -46,17 +53,17 @@
                                         <tr th:each="cliente, contador : ${clientes}">
                                             <td>[[${cliente.cedula}]]</td>
                                             <td>[[${cliente.nombre} + ' ' + ${cliente.apellidos}]]</td>
-                                           <td>[[${cliente.pasword}]]</td>
+                                            <td>[[${cliente.pasword}]]</td>
                                             <td>
                                                 <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/cliente/eliminar/}+${cliente.idCliente}"
                                                    class="btn btn-danger">
-                                                <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
+                                                    <i class="fas fa-trash"></i> 
                                                 </a>
                                             </td>
                                             <td>
                                                 <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/cliente/modificar/}+${cliente.idCliente}"
                                                    class="btn btn-primary">
-                                                    <i class="fas fa-pen"></i> [[#{accion.actualizar}]]
+                                                    <i class="fas fa-pen"></i> 
                                                 </a>
                                             </td>
                                         </tr>
@@ -68,7 +75,7 @@
                             </div>
                         </div>
                     </div>
-             
+
 
                 </div>
             </div>
@@ -77,7 +84,7 @@
             <div id="agregarCliente" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
-                        <div class="modal-header bg-info text-white">
+                        <div class="modal-header bg-danger text-white">
                             <h5 class="modal-title" th:text="#{accion.agregar}">Agregar Cliente</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div> 
@@ -100,7 +107,7 @@
                                     <label for="pasword" th:text="#{cliente.pasword}">Contraseña</label>
                                     <input type="pasword" class="form-control" name="pasword">
                                 </div>
-                               
+
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
@@ -142,7 +149,7 @@
                                             <label for="pasword" th:text="#{cliente.pasword}">Contraseña </label>
                                             <input type="text"  class="form-control" name="pasword" th:field="*{pasword}"/>
                                         </div>
-                                                  
+
                                     </div>
                                 </div>
                             </div>

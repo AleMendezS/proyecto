@@ -15,10 +15,13 @@
         <header th:fragment="header" class="header " >
             <nav class="navbar navbar-expand-sm navbar-dark bg-danger p-0 ">
                 <div class="container  ">
-                    <a th:href="@{/}" class="navbar-brand " style="float: right;">AutoCine</a>
-                    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+                  
+                    <a th:href="@{/}" class="navbar-brand " style="margin-top: 0px;">
+                          <img src="/images/logo.png" />
+                    </a>
+                   
+                       
+                   
 
                     <div class="d-inline-block "  id="navbarCollapse">
                         <ul class="navbar-nav d-inline-block "  sec:authorize="hasRole('ROLE_ADMIN')">
@@ -40,7 +43,7 @@
                             </li>
                             <li class="nav-item px-2 d-inline-block">
                                 <a class="nav-menu-link nav-link" style="color:white;" th:href="@{/factura/listado}"
-                                 >Factura</a>
+                                   >Factura</a>
                             </li>
                         </ul>
                         <ul class="navbar-nav d-inline-block" sec:authorize="hasRole('ROLE_CLIENTE')">
@@ -88,19 +91,15 @@
 
                         <ul class="navbar-nav d-inline-block" sec:authorize="hasRole('ROLE_CLIENTE')">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" style="color:white;" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Ubicaciones
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                    <li class="form-select" th:field="*{idUbi}">
-                                        <a th:each="item : ${ubicacion}"
-                                           th:value="${item.idUbi}"
-                                           th:text="${item.ubicacion}">
-                                        </a></li>
+                                    <li th:each="item : ${ubicacion}">
+                                        <a class="dropdown-item" href="#" th:text="${item.ubicacion}"></a>
+                                    </li>
                                 </ul>
                             </li>
-
-
                         </ul>
 
 

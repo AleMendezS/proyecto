@@ -24,6 +24,7 @@
         </section>
         <section th:fragment="listadoPeliculas" id="peliculas">
             <div class="container" sec:authorize="hasRole('ROLE_ADMIN')">
+            
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
@@ -75,21 +76,17 @@
                     </div>
                   
                 </div>
+           
             </div>
             
              <style sec:authorize="hasRole('ROLE_CLIENTE')">
                 .container{
-                margin-left: 80px;
+                margin-left: 100px;
                 }
                 .box{
                     width: 1200px;
                 }
-                .contenedor{
-                 
-                    margin-top: 30px;
-                    width: 1200px;
-
-                }
+               
                 .ratio{
 
                     margin-right: 100px;
@@ -103,11 +100,12 @@
                     position: relative;
                     width:200px;
                     height:300px;
-                    background: #ccc;
+
                     box-shadow: 0 15px 45px rgba(0,0,0,0.1);
                     display: flex;
                     overflow:hidden;
                     padding: 0px;
+                    border-radius:20px;
                 }
                 .carta:hover{
                     width:414px;
@@ -118,7 +116,7 @@
                     position:relative;
                     min-width:200px;
                     height:300px;
-                    background:#ccc;
+                  
                     display: flex;
 
                 }
@@ -175,9 +173,9 @@
                         <div class="row row-cols-6" th:if="${peliculas != null and !peliculas.empty}">
 
                             <div class="carta" th:each="pelicula : ${peliculas}" >
-                                <div class="imgpeli">
-                                    <img src="/images/avengers.jpg" class="card-img-top" alt="pelicula">  
-                                </div>
+                                <div class="imgpeli">  
+                                <img th:src="@{${'/images/' + pelicula.imagen}}" style="  border-radius:20px;"/>
+                            </div>
                                 <div class="contenido">
                                     <h5 class="card-title">[[${pelicula.nombre}]]</h5>
                                     <ul>

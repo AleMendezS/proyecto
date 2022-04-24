@@ -29,7 +29,7 @@ public class NotificacionController {
     @PostMapping("/notificacion/guardar")
     public String guardarNotificacion(Notificacion notificacion) {
         notificacionService.save(notificacion);
-        return "Index";
+        return "redirect:/";
     }
 
  
