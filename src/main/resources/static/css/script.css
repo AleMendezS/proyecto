@@ -33,7 +33,9 @@ PRIMARY KEY (id_ubi))
 ENGINE = innoDB;
 
 INSERT INTO proyecto.ubicacion (ubicacion)
-    VALUES ('Cartago');
+    VALUES ('Cartago'),
+		   ('Heredia'),
+           ('Alajuela');
 
 
 CREATE TABLE proyecto.combo (
@@ -45,6 +47,8 @@ precio INT  NOT NULL,
 PRIMARY KEY (id_combo))
 ENGINE = innoDB;
 
+INSERT INTO proyecto.combo (titulo,imagen,descripcion,precio)
+    VALUES ('Combo 1','hot dog.png','hot dog','1000');
 
 
 CREATE TABLE proyecto.pelicula(
@@ -54,18 +58,22 @@ genero VARCHAR(30) NOT NULL,
 apto VARCHAR (30)  NOT NULL, 
 hora VARCHAR(30) NOT NULL,
 idioma VARCHAR (30) NOT NULL,
+imagen VARCHAR (30) NOT NULL,
 precio INT NOT NULL,
 PRIMARY KEY (id_pelicula))
 ENGINE = innoDB;
 
-INSERT INTO proyecto.pelicula (nombre, genero, apto,hora,idioma,precio)
-    VALUES ('Doctor Strange','Accion', 'TP','2 pm', 'ESP/ING/SUB',5000),
-           ('Jujutsu Kaisen','Anime', 'TP','5 pm', 'JAP/SUB',5000),
-           ('A ciegas','Terror', '+18','8 pm', 'ESP/ING/SUB',5000),
-           ('Posesion Diabolica','Terror', '+18',' 10pm', 'ESP/ING/SUB',5000),
-           ('Sonic 2','Accion', 'TP','10 am', 'ING/SUB',5000),
-           ('Uncharted','Accion', 'TP','12 pm', 'ESP/ING/SUB',5000),
-           ('Batman', 'Accion','+15','2 pm', 'ESP/ING/SUB',5000);
+INSERT INTO proyecto.pelicula (nombre, genero, apto,hora,idioma,imagen,precio)
+    VALUES ('Doctor Strange','Accion', 'TP','2 pm', 'ESP/ING/SUB','doctor2.jpg',5000),
+           ('Avengers','Accion', 'TP','5 pm', 'JAP/SUB','avengers.jpg',5000),
+           ('El demonio en el espejo','Terror', '+18','8 pm', 'ESP/ING/SUB','demonio.jpg',5000),
+           ('El secreto de dumbledore','Terror', '+18',' 10pm', 'ESP/ING/SUB','dumbledore.jpg',5000),
+           ('Sonic 2','Accion', 'TP','10 am', 'ING/SUB','sonic2.jpg',5000),
+           ('Uncharted','Aventura', 'TP','12 pm', 'ESP/ING/SUB','uncharted.jpg',5000),
+		   ('King','Aventura', 'TP','1 pm', 'ESP/ING/SUB','king.jpg',5000),
+           ('Batman', 'Accion','+15','2 pm', 'ESP/ING/SUB','batman.jpg',5000),
+            ('La ciudad perdida', 'Aventura','+15','2 pm', 'ESP/ING/SUB','ciudad.jpg',5000),
+           ('Spiderman', 'Accion','+15','9 pm', 'ESP/ING/SUB','spiderman.jpg',5000);
            
 CREATE TABLE proyecto.notificacion(
 id_noti INT NOT NULL AUTO_INCREMENT,
@@ -89,4 +97,5 @@ precio INT NOT NULL,
 
 PRIMARY KEY (id_fact))
 ENGINE = innoDB;
+           
 */
