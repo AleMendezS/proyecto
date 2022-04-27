@@ -7,30 +7,95 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3" sec:authorize="hasRole('ROLE_ADMIN')">   
-                        <button 
-                            type="button" 
-                            class="btn btn-primary btn-block" 
-                            data-bs-toggle="modal" 
-                            data-bs-target="#agregarPelicula">
-                            <i class="fas fa-plus"></i> [[#{accion.agregar}]]
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
+
         <section th:fragment="listadoPeliculas" id="peliculas">
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <style>
+                .container{
+                    margin-left: 80px;
+
+                }
+
+                .contenedor{
+
+                    margin-top: 30px;
+                    width: 1200px;
+
+                }
+                #botonE{
+                    outline:none;
+                    border:none;
+                    transition:0.5s;
+                }
+
+                #botonE :hover{
+                    color:#ffffff;
+                    border-radius:20px;
+                    background:#FC0B00;
+                    box-shadow: 0px 0px 10px #3F3A3A,
+                        0px 0px 40px #b20d34 ,0px 0px 80px #3F3A3A;
+                    cursor:pointer;
+                }
+
+                #botonEd{
+                    outline:none;
+                    border:none;
+                    transition:0.5s;
+                }
+
+                #botonEd :hover{
+                    color:#ffffff;
+                    border-radius:20px;
+                    background:#0334FF;
+                    box-shadow: 0px 0px 10px #3F3A3A,
+                        0px 0px 40px #303032 ,0px 0px 80px #3F3A3A;
+                    cursor:pointer;
+                }
+                #botonG{
+                    outline:none;
+                    border:none;
+                    transition:0.5s;
+                }
+
+                #botonG :hover{
+                    color:#ffffff;
+                    border-radius:20px;
+                    background:#39BD50;
+                    box-shadow: 0px 0px 10px #3F3A3A,
+                        0px 0px 40px #303032 ,0px 0px 80px #3F3A3A;
+                    cursor:pointer;
+                }
+
+
+            </style>
             <div class="container" sec:authorize="hasRole('ROLE_ADMIN')">
-            
+
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>[[#{pelicula.titulo}]]</h4>
-                            </div>
+                        <div class="card" style="background-color:#C9CACA;">
+                            <table class="table table-stryped">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <h4>[[#{pelicula.titulo}]]</h4>
+                                        </td>
+                                        <td id="botonEd">
+                                            <div class="col-md-0" style=" float: right;
+                                                 margin-left: 550px;" sec:authorize="hasRole('ROLE_ADMIN')">   
+                                                <button id="botonEd"
+                                                        type="button" 
+                                                        class="btn btn-primary btn-block" 
+                                                        data-bs-toggle="modal" 
+                                                        data-bs-target="#agregarPelicula">
+                                                    <i class="fas fa-plus"></i> 
+                                                </button>
+                                            </div>
+                                        </td>
+                            </table>
                             <div th:if="${peliculas != null and !peliculas.empty}">
                                 <table class="table table-stryped">
                                     <thead class="thead-dark">
@@ -38,9 +103,9 @@
                                             <th th:text="#{pelicula.nombre}">Pelicula</th>
                                             <th th:text="#{pelicula.genero}">Genero</th>
                                             <th th:text="#{pelicula.apto}">Apto</th>
-                                             <th th:text="#{pelicula.hora}">Hora</th>
+                                            <th th:text="#{pelicula.hora}">Hora</th>
                                             <th th:text="#{pelicula.idioma}">Idioma</th>
-                                           <th th:text="#{pelicula.precio}">Precio</th>
+                                            <th th:text="#{pelicula.precio}">Precio</th>
                                             <th></th>
                                             <th></th>
                                         </tr>
@@ -49,20 +114,20 @@
                                         <tr th:each="pelicula, contador : ${peliculas}">
                                             <td>[[${pelicula.nombre}]]</td>
                                             <td>[[${pelicula.genero} ]]</td>
-                                           <td>[[${pelicula.apto}]]</td>
-                                           <td>[[${pelicula.hora}]]</td>
+                                            <td>[[${pelicula.apto}]]</td>
+                                            <td>[[${pelicula.hora}]]</td>
                                             <td>[[${pelicula.idioma}]]</td>
                                             <td>[[${pelicula.precio}]]</td>
-                                            <td>
-                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/pelicula/eliminar/}+${pelicula.idPelicula}"
+                                            <td id="botonE">
+                                                <a id="botonE" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/pelicula/eliminar/}+${pelicula.idPelicula}"
                                                    class="btn btn-danger">
-                                                    <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
+                                                    <i class="fas fa-trash"></i> 
                                                 </a>
                                             </td>
-                                            <td>
-                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/pelicula/modificar/}+${pelicula.idPelicula}"
+                                            <td id="botonEd">
+                                                <a id="botonEd"sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/pelicula/modificar/}+${pelicula.idPelicula}"
                                                    class="btn btn-primary">
-                                                    <i class="fas fa-pen"></i> [[#{accion.actualizar}]]
+                                                    <i class="fas fa-pen"></i> 
                                                 </a>
                                             </td>
                                         </tr>
@@ -74,19 +139,27 @@
                             </div>
                         </div>
                     </div>
-                  
+
                 </div>
-           
+
             </div>
-            
-             <style sec:authorize="hasRole('ROLE_CLIENTE')">
+
+            <style sec:authorize="hasRole('ROLE_CLIENTE')">
                 .container{
-                margin-left: 100px;
+                    margin-left: 80px;
+
+                }
+
+                .contenedor{
+
+                    margin-top: 30px;
+                    width: 1200px;
+
                 }
                 .box{
                     width: 1200px;
                 }
-               
+
                 .ratio{
 
                     margin-right: 100px;
@@ -116,7 +189,7 @@
                     position:relative;
                     min-width:200px;
                     height:300px;
-                  
+
                     display: flex;
 
                 }
@@ -165,49 +238,67 @@
 
 
             <div class="container" sec:authorize="hasRole('ROLE_CLIENTE')">
-          
+
                 <h2 th:text="#{index.titulo}">Cartelera</h2>
                 <br>
-                    <div class="box">
+                <div class="box">
 
-                        <div class="row row-cols-6" th:if="${peliculas != null and !peliculas.empty}">
+                    <div class="row row-cols-6" th:if="${peliculas != null and !peliculas.empty}">
 
-                            <div class="carta" th:each="pelicula : ${peliculas}" >
-                                <div class="imgpeli">  
+                        <div class="carta" th:each="pelicula : ${peliculas}" >
+                            <div class="imgpeli">  
                                 <img th:src="@{${'/images/' + pelicula.imagen}}" style="  border-radius:20px;"/>
                             </div>
-                                <div class="contenido">
-                                    <h5 class="card-title">[[${pelicula.nombre}]]</h5>
-                                    <ul>
-                                        <li class="caja1">Horario</li>
-                                        <li class="caja1">Apto</li>
-                                        <li class="caja1">Genero</li>
+                            <div class="contenido">
+                                <h5 class="card-title">[[${pelicula.nombre}]]</h5>
+                                <ul>
+                                    <li class="caja1">Horario</li>
+                                    <li class="caja1">Apto</li>
+                                    <li class="caja1">Genero</li>
 
-                                    </ul>
-                                    <ul>
-                                        <li class="caja2">[[${pelicula.hora}]]</li>
-                                        <li class="caja2">[[${pelicula.apto}]]</li>
-                                        <li class="caja2">[[${pelicula.genero}]]</li>
+                                </ul>
+                                <ul>
+                                    <li class="caja2">[[${pelicula.hora}]]</li>
+                                    <li class="caja2">[[${pelicula.apto}]]</li>
+                                    <li class="caja2">[[${pelicula.genero}]]</li>
+                                    <li id="botonG">
+                                        <a id="botonG" sec:authorize="hasRole('ROLE_CLIENTE')" th:href="@{/factura/modificar/}+${pelicula.idPelicula}"
+                                           class="btn btn-success">
+                                            <i class="fas fa-cart-shopping"></i> [[#{accion.comprar}]]
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>  
 
-                                    </ul>
-                                </div>
-                            </div>  
-
-                        </div> 
-                    </div>
+                    </div> 
+                </div>
             </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
         </section>
         <section th:fragment="agregarPelicula">
             <div id="agregarPelicula" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
-                        <div class="modal-header bg-info text-white">
-                            <h5 class="modal-title" th:text="#{accion.agregar}">Agregar Pelicula</h5>
+                        <div class="modal-header  text-white" style="background-color: #DE2121;">
+                            <h5 class="modal-title" th:text="#{accion.agregarP}">Agregar Pelicula</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div> 
                         <form th:action="@{/pelicula/guardar}" th:object="${pelicula}"
-                              method="POST" class="was-validated">
-                            <div class="modal-body">
+                              method="POST" class="was-validated" style="background-color:#C9CACA;">
+                            <div class="modal-body" >
+                                <div class="form-group">
+                                    <label for="imagen" th:text="#{pelicula.imagen}">Imagen</label>
+                                    <input type="text" class="form-control" name="imagen" required="true">
+                                </div>
                                 <div class="form-group">
                                     <label for="nombre" th:text="#{pelicula.nombre}">Pelicula</label>
                                     <input type="text" class="form-control" name="nombre" required="true">
@@ -220,7 +311,7 @@
                                     <label for="apto" th:text="#{pelicula.apto}">Apto</label>
                                     <input type="text" class="form-control" name="apto" required="true">
                                 </div>
-                                 <div class="form-group">
+                                <div class="form-group">
                                     <label for="hora" th:text="#{pelicula.hora}">Hora</label>
                                     <input type="text" class="form-control" name="hora" required="true">
                                 </div>
@@ -232,10 +323,10 @@
                                     <label for="precio" th:text="#{pelicula.precio}">Precio</label>
                                     <input type="number" class="form-control" name="precio" required="true">
                                 </div>
-                               
+
                             </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
+                            <div class="modal-footer" id="botonEd">
+                                <button id="botonEd" class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
                             </div>
                         </form>
                     </div>
@@ -270,7 +361,7 @@
                                             <label for="apto" th:text="#{pelicula.apto}">Apto </label>
                                             <input type="text"  class="form-control" name="apto" th:field="*{apto}"/>
                                         </div>
-                                          <div class="form-group">
+                                        <div class="form-group">
                                             <label for="hora" th:text="#{pelicula.hora}">Hora </label>
                                             <input type="text"  class="form-control" name="hora" th:field="*{hora}"/>
                                         </div>
@@ -282,12 +373,12 @@
                                             <label for="precio" th:text="#{pelicula.precio}">Precio </label>
                                             <input type="number"  class="form-control" name="precio" th:field="*{precio}"/>
                                         </div>
-                                        </div>                    
-                                    </div>
+                                    </div>                    
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
             </form>
         </section>

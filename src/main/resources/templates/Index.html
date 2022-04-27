@@ -48,7 +48,7 @@
                 }
                 .box{
                      margin-left: 50px;
-                    width: 1260px;
+                    width: 1195px;
                 }
                 .contenedor{
 
@@ -130,6 +130,20 @@
                     width:60px;
                     margin-bottom:5px;
                 }
+                #botonG{
+                    outline:none;
+                    border:none;
+                    transition:0.5s;
+                }
+
+                #botonG :hover{
+                    color:#ffffff;
+                    border-radius:20px;
+                    background:#39BD50;
+                    box-shadow: 0px 0px 10px #3F3A3A,
+                        0px 0px 40px #303032 ,0px 0px 80px #3F3A3A;
+                    cursor:pointer;
+                }
 
             </style>
 
@@ -164,10 +178,12 @@
                                     <li class="caja2">[[${pelicula.hora}]]</li>
                                     <li class="caja2">[[${pelicula.apto}]]</li>
                                     <li class="caja2">[[${pelicula.genero}]]</li>
-                                    <a sec:authorize="hasRole('ROLE_CLIENTE')" th:href="@{/factura/modificar/}+${pelicula.idPelicula}"
-                                       class="btn btn-primary">
-                                        <i class="fas fa-pen"></i> [[#{accion.actualizar}]]
+                                    <li id="botonG">
+                                    <a id="botonG" sec:authorize="hasRole('ROLE_CLIENTE')" th:href="@{/factura/modificar/}+${pelicula.idPelicula}"
+                                       class="btn btn-success">
+                                        <i class="fas fa-cart-shopping"></i> [[#{accion.comprar}]]
                                     </a>
+                                        </li>
                                 </ul>
                             </div>
 

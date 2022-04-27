@@ -1,5 +1,6 @@
 package com.ProyectoWeb.controller;
 
+import com.ProyectoWeb.service.FacturaService;
 import com.ProyectoWeb.service.NotificacionService;
 import com.ProyectoWeb.service.PeliculaService;
 import com.ProyectoWeb.service.UbicacionService;
@@ -15,12 +16,15 @@ public class IndexController {
 
     @Autowired
     private PeliculaService peliculaService;
-    
+
     @Autowired
     private UbicacionService ubicacionService;
-    
+
     @Autowired
     private NotificacionService notificacionService;
+    @Autowired
+
+    private FacturaService facturaService;
 
     @GetMapping("/")
     public String inicio(Model model) {
@@ -32,7 +36,9 @@ public class IndexController {
         var notificaciones = notificacionService.getNotificaciones();
 
         model.addAttribute("totalNotificaciones", notificaciones.size());
+        var facturas = facturaService.getFacturas();
 
+        model.addAttribute("totalFacturas", facturas.size());
         return "Index";
     }
 }

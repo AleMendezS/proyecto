@@ -1,7 +1,9 @@
 package com.ProyectoWeb.controller;
+
 import com.ProyectoWeb.domain.Factura;
 import com.ProyectoWeb.domain.Pelicula;
 import com.ProyectoWeb.service.FacturaService;
+import com.ProyectoWeb.service.NotificacionService;
 import com.ProyectoWeb.service.PeliculaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +19,20 @@ public class FacturaController {
     @Autowired
 
     private FacturaService facturaService;
-      @Autowired
+    @Autowired
 
     private PeliculaService peliculaService;
+    @Autowired
+
+    private NotificacionService notificacionService;
 
     @GetMapping("/factura/listado")
     public String inicio(Model model) {
         var facturas = facturaService.getFacturas();
         model.addAttribute("facturas", facturas);
-       
+        model.addAttribute("totalFacturas", facturas.size());
+        var notificaciones = notificacionService.getNotificaciones();
+        model.addAttribute("totalNotificaciones", notificaciones.size());
 
         return "/factura/listado";
     }
@@ -35,14 +42,13 @@ public class FacturaController {
         facturaService.save(factura);
         return "redirect:/";
     }
-    
-  @GetMapping("/factura/modificar/{idPelicula}")
-    public String comprarPelicula (Pelicula pelicula, Model model){
+
+    @GetMapping("/factura/modificar/{idPelicula}")
+    public String comprarPelicula(Pelicula pelicula, Model model) {
         var respuesta = peliculaService.getPelicula(pelicula);
-        model.addAttribute("factura",respuesta);
+        model.addAttribute("factura", respuesta);
         return "factura/modifica";
     }
- 
 
     @GetMapping("/factura/eliminar/{idFact}")
     public String eliminarFactura(Factura factura) {

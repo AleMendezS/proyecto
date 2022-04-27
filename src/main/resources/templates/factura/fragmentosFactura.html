@@ -8,10 +8,72 @@
     </head>
     <body>
         <section th:fragment="listadoFacturas" id="facturas">
+            <style>
+                .container{
+                    margin-left: 80px;
+
+                }
+
+                .contenedor{
+
+                    margin-top: 30px;
+                    width: 1200px;
+
+                }
+                #botonE{
+                    outline:none;
+                    border:none;
+                    transition:0.5s;
+                }
+
+                #botonE :hover{
+                    color:#ffffff;
+                    border-radius:20px;
+                    background:#FC0B00;
+                    box-shadow: 0px 0px 10px #3F3A3A,
+                        0px 0px 40px #b20d34 ,0px 0px 80px #3F3A3A;
+                    cursor:pointer;
+                }
+
+                #botonEd{
+                    outline:none;
+                    border:none;
+                    transition:0.5s;
+                }
+
+                #botonEd :hover{
+                    color:#ffffff;
+                    border-radius:20px;
+                    background:#0334FF;
+                    box-shadow: 0px 0px 10px #3F3A3A,
+                        0px 0px 40px #303032 ,0px 0px 80px #3F3A3A;
+                    cursor:pointer;
+                }
+                #botonG{
+                    outline:none;
+                    border:none;
+                    transition:0.5s;
+                }
+
+                #botonG :hover{
+                    color:#ffffff;
+                    border-radius:20px;
+                    background:#39BD50;
+                    box-shadow: 0px 0px 10px #3F3A3A,
+                        0px 0px 40px #303032 ,0px 0px 80px #3F3A3A;
+                    cursor:pointer;
+                }
+
+
+            </style>        
+            <br>
+            <br>
+            <br>
+
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card">
+                        <div class="card"  style="background-color:#C9CACA;">
                             <div class="card-header">
                                 <h4>[[#{factura.titulo}]]</h4>
                             </div>
@@ -37,18 +99,13 @@
                                             <td>[[${factura.hora}]]</td>
                                             <td>[[${factura.idioma} ]]</td>
                                             <td>[[${factura.precio}]]</td>
-                                            <td>
-                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/factura/eliminar/}+${factura.idFact}"
+                                            <td id="botonE">
+                                                <a id="botonE" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/factura/eliminar/}+${factura.idFact}"
                                                    class="btn btn-danger">
-                                                    <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
+                                                    <i class="fas fa-trash"></i> 
                                                 </a>
                                             </td>
-                                            <td>
-                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/factura/modificar/}+${factura.idFact}"
-                                                   class="btn btn-primary">
-                                                    <i class="fas fa-pen"></i> [[#{accion.actualizar}]]
-                                                </a>
-                                            </td>
+
                                         </tr>
                                     </tbody>
                                 </table>
@@ -61,23 +118,53 @@
 
                 </div>
             </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
         </section>
 
 
-        <section th:fragment="editarFactura">            
+        <section th:fragment="editarFactura"> 
+            <br>
+           
+      
+            <style>
+              #botonG{
+                    outline:none;
+                    border:none;
+                    transition:0.5s;
+                }
+
+                #botonG :hover{
+                    color:#ffffff;
+                    border-radius:20px;
+                    background:#39BD50;
+                    box-shadow: 0px 0px 10px #3F3A3A,
+                        0px 0px 40px #303032 ,0px 0px 80px #3F3A3A;
+                    cursor:pointer;
+                }
+            </style>
             <form method="POST"
                   th:action="@{/factura/guardar}"
                   th:object="${factura}"
-                  class="was-validated">
+                  class="was-validated" >
 
 
                 <div id="details">
                     <div class="container">
                         <div class="row">
                             <div class="col">
-                                <div class="card">
+                                <div class="card" style="background-color:#C9CACA;">
                                     <div class="card-header">
-                                        <h4>[[#{accion.actualizar}]]</h4>
+                                        <h4>[[#{accion.comprar}]]</h4>
                                     </div>
                                     <div class="card-body">
                                         <div class="form-group">
@@ -104,8 +191,8 @@
                                             <label for="precio" th:text="#{pelicula.precio}">Precio </label>
                                             <input type="number"  class="form-control" name="precio" th:field="*{precio}"  readonly/>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button class="btn btn-primary" type="submit" th:text="#{accion.comprar}">Comprar</button>
+                                        <div class="modal-footer" id="botonG">
+                                            <button id="botonG" class="btn btn-success" type="submit" th:text="#{accion.comprar}">Comprar</button>
                                         </div>
                                     </div>                    
                                 </div>

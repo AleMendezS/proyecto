@@ -11,6 +11,49 @@
 
 
         <section th:fragment="listadoCombos" id="combos">
+            <style>
+                .container{
+                    margin-left: 80px;
+
+                }
+
+                .contenedor{
+
+                    margin-top: 30px;
+                    width: 1200px;
+
+                }
+                #botonE{
+                    outline:none;
+                    border:none;
+                    transition:0.5s;
+                }
+
+                #botonE :hover{
+                    color:#ffffff;
+                    border-radius:20px;
+                    background:#FC0B00;
+                    box-shadow: 0px 0px 10px #3F3A3A,
+                        0px 0px 40px #b20d34 ,0px 0px 80px #3F3A3A;
+                    cursor:pointer;
+                }
+
+                #botonEd{
+                    outline:none;
+                    border:none;
+                    transition:0.5s;
+                }
+
+                #botonEd :hover{
+                    color:#ffffff;
+                    border-radius:20px;
+                    background:#0334FF;
+                    box-shadow: 0px 0px 10px #3F3A3A,
+                        0px 0px 40px #303032 ,0px 0px 80px #3F3A3A;
+                    cursor:pointer;
+                }
+
+            </style>
             <br>
             <br>
             <div class="container" >
@@ -27,13 +70,13 @@
 
 
                                             <td>
-                                                
+
                                                 <h4>[[#{combo.titulo}]]</h4>
                                             </td>
                                             <td>
-                                                <div class="col-md-0" style=" float: right;
+                                                <div id="botonEd" class="col-md-0" style=" float: right;
                                                      margin-left: 550px;"  sec:authorize="hasRole('ROLE_ADMIN')">   
-                                                    <button type="button" 
+                                                    <button id="botonEd" type="button" 
                                                             class="btn btn-primary btn-block" 
                                                             data-bs-toggle="modal" 
                                                             data-bs-target="#agregarCombo">
@@ -70,14 +113,14 @@
                                             <td>[[${combo.descripcion}]]</td>
                                             <td>₡[[${combo.precio}]]</td>
 
-                                            <td>
-                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/combo/eliminar/}+${combo.idCombo}"
+                                            <td id="botonE">
+                                                <a id="botonE" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/combo/eliminar/}+${combo.idCombo}"
                                                    class="btn btn-danger">
                                                     <i class="fas fa-trash"></i> 
                                                 </a>
                                             </td>
-                                            <td>
-                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/combo/modificar/}+${combo.idCombo}"
+                                            <td id="botonEd">
+                                                <a id="botonEd" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/combo/modificar/}+${combo.idCombo}"
                                                    class="btn btn-primary">
                                                     <i class="fas fa-pen"></i> 
                                                 </a>
@@ -86,6 +129,7 @@
                                     </tbody>
                                 </table>
                             </div>
+
                             <div class="text-center p-2" th:if="${combos == null or combos.empty}">
                                 <span th:text="#{combo.no_mostrar}">Lista vacía</span>
                             </div>
@@ -93,6 +137,7 @@
                     </div>
 
                 </div>
+               
 
                 <div class="container"  sec:authorize="hasRole('ROLE_CLIENTE')">
                     <h2 th:text="#{combo.Titulo}">Nuestros Articulos</h2>
@@ -121,10 +166,28 @@
                     </div>
 
                 </div>
+                 <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
                 <style  sec:authorize="hasRole('ROLE_CLIENTE')">
                     .container{
-                        margin-left: 100px;
-                    }
+                    margin-left: 80px;
+
+                }
+
+                .contenedor{
+
+                    margin-top: 30px;
+                    width: 1200px;
+
+                }
                     .container .carta{
                         margin-right: 10px;
                         margin-bottom: 10px;
@@ -267,16 +330,17 @@
         </section>
 
         <section th:fragment="agregarCombo">
+
             <div id="agregarCombo" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header bg-danger text-white">
-                            <h5 class="modal-title" th:text="#{accion.agregar}">Agregar Combo</h5>
+                    <div class="modal-content" >
+                        <div class="modal-header  text-white" style="background-color: #DE2121;" >
+                            <h5 class="modal-title" th:text="#{accion.agregarCo}">Agregar Combo</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div> 
                         <form th:action="@{/combo/guardar}" th:object="${combo}"
-                              method="POST" class="was-validated">
-                            <div class="modal-body">
+                              method="POST" class="was-validated" style="background-color:#C9CACA;">
+                            <div class="modal-body" >
                                 <div class="form-group">
                                     <label for="imagen" th:text="#{combo.imagen}">imagen</label>
                                     <input type="text" class="form-control" name="imagen" required="true">
@@ -296,15 +360,72 @@
 
 
                             </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
+                            <div class="modal-footer" id="botonEd">
+                                <button id="botonEd" class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </section>
-        <section th:fragment="editarCombo">            
+        <section th:fragment="editarCombo">  
+            <style>
+                .container{
+                    margin-left: 80px;
+
+                }
+
+                .contenedor{
+
+                    margin-top: 30px;
+                    width: 1200px;
+
+                }
+                #botonE{
+                    outline:none;
+                    border:none;
+                    transition:0.5s;
+                }
+
+                #botonE :hover{
+                    color:#ffffff;
+                    border-radius:20px;
+                    background:#FC0B00;
+                    box-shadow: 0px 0px 10px #3F3A3A,
+                        0px 0px 40px #b20d34 ,0px 0px 80px #3F3A3A;
+                    cursor:pointer;
+                }
+
+                #botonEd{
+                    outline:none;
+                    border:none;
+                    transition:0.5s;
+                }
+
+                #botonEd :hover{
+                    color:#ffffff;
+                    border-radius:20px;
+                    background:#0334FF;
+                    box-shadow: 0px 0px 10px #3F3A3A,
+                        0px 0px 40px #303032 ,0px 0px 80px #3F3A3A;
+                    cursor:pointer;
+                }
+                #botonG{
+                    outline:none;
+                    border:none;
+                    transition:0.5s;
+                }
+
+                #botonG :hover{
+                    color:#ffffff;
+                    border-radius:20px;
+                    background:#39BD50;
+                    box-shadow: 0px 0px 10px #3F3A3A,
+                        0px 0px 40px #303032 ,0px 0px 80px #3F3A3A;
+                    cursor:pointer;
+                }
+            </style>
+
             <form method="POST"
                   th:action="@{/combo/guardar}"
                   th:object="${combo}"
@@ -315,7 +436,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col">
-                                <div class="card">
+                                <div class="card" style="background-color:#C9CACA;">
                                     <div class="card-header">
                                         <h4>[[#{accion.actualizar}]]</h4>
                                     </div>
@@ -351,20 +472,20 @@
             <div id="actions" class="py-4 mb-4 bg-light">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-3">
-                            <a th:href="@{/combo/listado}" class="btn btn-ligth btn-block">
-                                <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
+                        <div class="col-md-3" id="botonE">
+                            <a id="botonE" th:href="@{/combo/listado}" class="btn btn-ligth btn-block">
+                                <i class="fas fa-arrow-left"></i> 
                             </a>
                         </div>
-                        <div class="col-md-3">
-                            <button type="submit" class="btn btn-success btn-block">
-                                <i class="fas fa-check"></i> [[#{accion.guardar}]]
+                        <div class="col-md-3" id="botonG">
+                            <button id="botonG" type="submit" class="btn btn-success btn-block">
+                                <i class="fas fa-check"></i> 
                             </button>
                         </div>
-                        <div class="col-md-3">
-                            <a th:href="@{/combo/eliminar/}+${combo.idCombo}"
+                        <div class="col-md-3" id="botonE">
+                            <a id="botonE" th:href="@{/combo/eliminar/}+${combo.idCombo}"
                                class="btn btn-danger btn-block">
-                                <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
+                                <i class="fas fa-trash"></i> 
                             </a>
                         </div>
                     </div>

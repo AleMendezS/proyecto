@@ -9,62 +9,135 @@
     <body>
 
         <section th:fragment="listadoNotificaciones" id="notificaciones">
-            <div class="container" sec:authorize="hasRole('ROLE_ADMIN')">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>[[#{notificacion.titulo}]]</h4>
-                            </div>
-                            <div th:if="${notificaciones != null and !notificaciones.empty}">
-                                <table class="table table-stryped">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th th:text="#{notificacion.correo}">Correo</th>
-                                            <th th:text="#{notificacion.notificacion}">Notificacion</th>
+            <style>
+                .container{
+                    margin-left: 80px;
+
+                }
+
+                .contenedor{
+
+                    margin-top: 30px;
+                    width: 1200px;
+
+                }
+                #botonE{
+                    outline:none;
+                    border:none;
+                    transition:0.5s;
+                }
+
+                #botonE :hover{
+                    color:#ffffff;
+                    border-radius:20px;
+                    background:#FC0B00;
+                    box-shadow: 0px 0px 10px #3F3A3A,
+                        0px 0px 40px #b20d34 ,0px 0px 80px #3F3A3A;
+                    cursor:pointer;
+                }
+
+                #botonEd{
+                    outline:none;
+                    border:none;
+                    transition:0.5s;
+                }
+
+                #botonEd :hover{
+                    color:#ffffff;
+                    border-radius:20px;
+                    background:#0334FF;
+                    box-shadow: 0px 0px 10px #3F3A3A,
+                        0px 0px 40px #303032 ,0px 0px 80px #3F3A3A;
+                    cursor:pointer;
+                }
+                #botonG{
+                    outline:none;
+                    border:none;
+                    transition:0.5s;
+                }
+
+                #botonG :hover{
+                    color:#ffffff;
+                    border-radius:20px;
+                    background:#39BD50;
+                    box-shadow: 0px 0px 10px #3F3A3A,
+                        0px 0px 40px #303032 ,0px 0px 80px #3F3A3A;
+                    cursor:pointer;
+                }
 
 
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr th:each="notificacion, contador : ${notificaciones}">
-                                            <td>[[${notificacion.correo}]]</td>
-                                            <td>[[${notificacion.notifi}]]</td>
+            </style>
+            <br>
+            <br>
+            <div class="container"  
+                 sec:authorize="hasRole('ROLE_ADMIN')">
+                <div class="contenedor">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="card" style="background-color:#C9CACA;">
+                                <div class="card-header">
+                                    <h4>[[#{notificacion.tituloA}]]</h4>
+                                </div>
+                                <div th:if="${notificaciones != null and !notificaciones.empty}">
+                                    <table class="table table-stryped">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th th:text="#{notificacion.correo}">Correo</th>
+                                                <th th:text="#{notificacion.notificacion}">Notificacion</th>
 
-                                            <td>
-                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/notificacion/eliminar/}+${notificacion.idNoti}"
-                                                   class="btn btn-danger">
-                                                    <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
-                                                </a>
-                                            </td>
 
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="text-center p-2" th:if="${notificaciones == null or notificaciones.empty}">
-                                <span th:text="#{notificacion.no_mostrar}">Lista vacía</span>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="notificacion, contador : ${notificaciones}">
+                                                <td>[[${notificacion.correo}]]</td>
+                                                <td>[[${notificacion.notifi}]]</td>
+
+                                                <td id="botonE">
+                                                    <a  id="botonE" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/notificacion/eliminar/}+${notificacion.idNoti}"
+                                                        class="btn btn-danger">
+                                                        <i class="fas fa-trash"></i> 
+                                                    </a>
+                                                </td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="text-center p-2" th:if="${notificaciones == null or notificaciones.empty}">
+                                    <span th:text="#{notificacion.no_mostrar}">Lista vacía</span>
+                                </div>
                             </div>
                         </div>
+
+
                     </div>
-
-
                 </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+
             </div>
-         
         </section>
         <section th:fragment="agregarNotificacion" sec:authorize="hasRole('ROLE_CLIENTE')" >
-          <div class="container">
-              <br>
-              <br>
-              <h2 th:text="#{notificacion.titulo}">Escribenos</h2>
-              <br>
-            <form th:action="@{/notificacion/guardar}" th:object="${notificacion}"
-                  method="POST" class="was-validated">
-               
-               
+            <div class="container">
+                <br>
+                <br>
+                <h2 th:text="#{notificacion.titulo}">Escribenos</h2>
+                <br>
+                <form th:action="@{/notificacion/guardar}" th:object="${notificacion}"
+                      method="POST" class="was-validated" >
+
+
                     <div class="form-group">
                         <label  for="correo" th:text="#{notificacion.correo}">Correo</label>
                         <input  type="text" class="form-control" name="correo" required="true">
@@ -75,21 +148,38 @@
                     </div>
 
 
-            
-                <div class="modal-footer">
-                    <button class="btn btn-primary" type="submit" th:text="#{accion.enviar}">Enviar</button>
-                </div>
-              
-            </form>
-        </div>
+
+                    <div class="modal-footer" id="botonEd">
+                        <button id="botonEd" class="btn btn-primary" type="submit" th:text="#{accion.enviar}">Enviar</button>
+                    </div>
+
+                </form>
+                <br>
+                <br>
+                <br>
+            </div>
             <style>
-                
+
                 .container{
                     margin-left: 100px;
                     margin-top: 0px;
-                   
+
                 }
-                
+                #botonEd{
+                    outline:none;
+                    border:none;
+                    transition:0.5s;
+                }
+
+                #botonEd :hover{
+                    color:#ffffff;
+                    border-radius:20px;
+                    background:#0334FF;
+                    box-shadow: 0px 0px 10px #3F3A3A,
+                        0px 0px 40px #303032 ,0px 0px 80px #3F3A3A;
+                    cursor:pointer;
+                }
+
             </style>
 
 
@@ -137,7 +227,7 @@
                                 <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
                             </a>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3" >
                             <button type="submit" class="btn btn-success btn-block">
                                 <i class="fas fa-check"></i> [[#{accion.guardar}]]
                             </button>
