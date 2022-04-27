@@ -82,9 +82,7 @@ notifi VARCHAR(50) NOT NULL,
 PRIMARY KEY (id_noti))
 ENGINE = innoDB;
 
-INSERT INTO proyecto.notificacion (correo, notifi)
-    VALUES ('ale01@hotmail.com','tengo problemas a la hora de comprar la pelicula'),
-		   ('ale01@hotmail.com','tengo problemas a la hora de comprar la pelicula');
+
 
 CREATE TABLE proyecto.factura(
 id_fact INT NOT NULL AUTO_INCREMENT,
@@ -97,5 +95,6 @@ precio INT NOT NULL,
 
 PRIMARY KEY (id_fact))
 ENGINE = innoDB;
+           
            
 */
